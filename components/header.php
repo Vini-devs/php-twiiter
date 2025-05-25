@@ -14,36 +14,35 @@
 <body style="background-color: #e6ecf0; font-family: 'Segoe UI', 'Arial', 'sans-serif'; color: #14171a;">
     <header class="py-2 shadow-sm bg-white border-bottom border-1 border-light-subtle">
         <div class="container">
-            <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-around align-items-center">
                 <h1 class="h3 mb-0 d-flex align-items-center">
                     <i class="bi bi-twitter text-primary me-2" style="font-size:2rem;"></i>
-                    <a href="index.php" class="text-decoration-none text-primary fw-bold"
+                    <a href="?p=" class="text-decoration-none text-primary fw-bold"
                         style="letter-spacing:-1px;">Twitter</a>
                 </h1>
                 <nav>
-                    <a href="index.php" class="btn btn-light rounded-pill me-2">Página Inicial</a>
-                    <a href="filter.php" class="btn btn-light rounded-pill me-2">Explorar</a>
-                    <a href="login.php" class="btn btn-light rounded-pill me-2">Entrar</a>
+                    <a href="?p=explorar" class="btn btn-light rounded-pill me-2">Explorar</a>
+                    <a href="?p=pesquisar" class="btn btn-light rounded-pill me-2">Pesquisar</a>
+                    <a href="?p=mensagens" class="btn btn-light rounded-pill me-2">DM</a>
                 </nav>
                 <div class="d-flex align-items-center">
-                    <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] && $_SESSION['username']): ?>
-                    <div class="me-2 text-secondary">@<?= strtolower($_SESSION['username']) ?></div>
-                    <form method="POST" class="d-inline-flex align-items-center">
-                        <button type="submit" name="logout" class="btn btn-light text-danger rounded-pill">Sair</button>
-                    </form>
-                    <?php endif; ?>
-                    <a href="<?php echo isset($_SESSION['logged_in']) && $_SESSION['logged_in'] ? 'protected.php' : 'login.php'; ?>"
+
+                    <?php if (isset($_SESSION['id_usuario']) && $_SESSION['logged_in'] && $_SESSION['id_usuario']) { ?>
+                    <div class="me-2 text-secondary">@<?= strtolower($_SESSION['nickname']) ?></div>
+                    <a href="?p=logout" class="btn btn-light text-danger rounded-pill"> Sair </a>
+
+                    <a href="<?php echo isset($_SESSION['logged_in']) && $_SESSION['logged_in'] ? '?p=protected' : '?p=login'; ?>"
                         class="btn btn-primary rounded-pill ms-2 fw-bold">
                         <i class="bi bi-plus-circle me-1"></i> Novo Tweet
                     </a>
+                    <?php } else { ?>
+
+                    <a href="?p=login" class="btn btn-primary rounded-pill ms-2 fw-bold">
+                        Entrar
+                    </a>
+
+                    <?php } ?>
                 </div>
             </div>
         </div>
     </header>
-    <?php
-    if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
-        session_destroy();
-        header('Location: index.php');
-        exit;
-    }
-    ?>

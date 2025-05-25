@@ -1,28 +1,10 @@
 <?php
-session_start();
+require_once __DIR__ . '/../services/session.php';
 
-include 'data/items.php';
-include 'functions/helpers.php';
-
-$items = $_SESSION['items'] ?? $items;
-
-$itemId = isset($_GET['id']) ? (int) $_GET['id'] : 0;
-
-$item = null;
-foreach ($items as $i) {
-    if ($i['id'] === $itemId) {
-        $item = $i;
-        break;
-    }
-}
-
-if (!$item) {
-    redirect('index.php');
-}
-
-include 'includes/header.php';
+// A view não deve conter lógica de sessão, manipulação de GET ou redirecionamentos.
+// Receba as variáveis $item do controller.
+include __DIR__ . '/../components/header.php';
 ?>
-
 <div class="container mt-4">
     <div class="card border-1 border-light-subtle rounded-4 shadow-sm">
         <img src="<?php echo escape($item['image']); ?>" class="card-img-top rounded-top-4"
@@ -36,5 +18,4 @@ include 'includes/header.php';
         </div>
     </div>
 </div>
-
-<?php include 'includes/footer.php'; ?>
+<?php include __DIR__ . '/../components/footer.php'; ?>

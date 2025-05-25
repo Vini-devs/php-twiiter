@@ -1,34 +1,13 @@
 <?php
-session_start();
+require_once __DIR__ . '/../services/session.php';
 
-include 'data/items.php';
-include 'functions/helpers.php';
-
-$items = $_SESSION['items'] ?? $items;
-
-$topic = isset($_GET['topic']) ? $_GET['topic'] : '';
-$search = isset($_GET['search']) ? $_GET['search'] : '';
-$filteredItems = [];
-
-if ($topic || $search) {
-    foreach ($items as $item) {
-        $matchesTopic = !$topic || strtolower($item['topic']) === strtolower($topic);
-        $matchesSearch = !$search || stripos($item['title'], $search) !== false;
-
-        if ($matchesTopic && $matchesSearch) {
-            $filteredItems[] = $item;
-        }
-    }
-} else {
-    $filteredItems = $items;
-}
-
-include 'includes/header.php';
+// A view não deve conter lógica de sessão, manipulação de GET ou filtragem.
+// Receba as variáveis $filteredItems, $search, $topic do controller.
+include __DIR__ . '/../components/header.php';
 ?>
-
 <div class="container mt-4">
     <h1 class="text-center">Filtrar Tweets</h1>
-    <form method="GET" action="filter.php" class="mt-4 row g-3">
+    <form method="GET" action="pesquisar.php" class="mt-4 row g-3">
         <div class="col-md-8">
             <label for="search" class="form-label">Pesquisar por Tweet:</label>
             <input type="text" name="search" id="search" class="form-control rounded-pill"
@@ -39,7 +18,7 @@ include 'includes/header.php';
             <select name="topic" id="topic" class="form-select rounded-pill">
                 <option value="">Todos</option>
                 <?php
-                $topics = array_unique(array_column($items, 'topic'));
+                $topics = array_unique(array_column($filteredItems, 'topic'));
                 foreach ($topics as $tp): ?>
                 <option value="<?php echo $tp; ?>" <?php echo $tp === $topic ? 'selected' : ''; ?>>
                     <?php echo $tp; ?>
@@ -51,7 +30,6 @@ include 'includes/header.php';
             <button type="submit" class="btn btn-primary w-100 rounded-pill">Filtrar</button>
         </div>
     </form>
-
     <div class="row mt-4">
         <?php if (empty($filteredItems)): ?>
         <p class="text-center">Nenhum tweet encontrado para os critérios selecionados.</p>
@@ -65,7 +43,7 @@ include 'includes/header.php';
                     <h5 class="card-title text-primary fw-bold">
                         @<?php echo strtolower(str_replace(' ', '', escape($item['title']))); ?></h5>
                     <p class="card-text">Tópico: <?php echo $item['topic']; ?></p>
-                    <a href="details.php?id=<?php echo $item['id']; ?>" class="btn btn-primary rounded-pill">Ver
+                    <a href="detalhes.php?id=<?php echo $item['id']; ?>" class="btn btn-primary rounded-pill">Ver
                         Tweet</a>
                 </div>
             </div>
@@ -74,8 +52,4 @@ include 'includes/header.php';
         <?php endif; ?>
     </div>
 </div>
-</body>
-
-</html>
-
-<?php include 'includes/footer.php'; ?>
+<?php include __DIR__ . '/../components/footer.php'; ?>

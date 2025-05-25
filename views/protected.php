@@ -1,42 +1,14 @@
 <?php
-session_start();
+require_once __DIR__ . '/../services/session.php';
 
-include 'data/items.php';
-include 'functions/helpers.php';
-
-if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in']) {
-    header('Location: login.php');
-    exit;
-}
-
-if (!isset($_SESSION['items'])) {
-    include 'data/items.php';
-    $_SESSION['items'] = $items;
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $newItem = [
-        'id' => count($_SESSION['items']) + 1,
-        'title' => $_POST['title'] ?? '',
-        'image' => $_POST['image'] ?? '',
-        'topic' => $_POST['topic'] ?? '',
-        'description' => $_POST['description'] ?? '',
-    ];
-
-    $_SESSION['items'][] = $newItem;
-    header('Location: protected.php');
-    exit;
-}
-
-$items = $_SESSION['items'];
-
-include 'includes/header.php';
+// A view não deve conter lógica de sessão, manipulação de POST ou redirecionamentos.
+// Receba as variáveis $items e $username do controller.
+include __DIR__ . '/../components/header.php';
 ?>
-
 <div class="container mt-4">
     <a href="index.php" class="btn btn-secondary rounded-pill mb-3">Voltar à Timeline</a>
     <h1 class="text-center">Página Protegida</h1>
-    <p class="text-center">Bem-vindo, @<?php echo htmlspecialchars(strtolower($_SESSION['username'])); ?>!</p>
+    <p class="text-center">Bem-vindo, @<?php echo htmlspecialchars(strtolower($username)); ?>!</p>
     <h2 class="mt-4">Novo Tweet</h2>
     <form method="POST" action="protected.php" class="mt-3">
         <div class="mb-3">
@@ -57,7 +29,6 @@ include 'includes/header.php';
         </div>
         <button type="submit" class="btn btn-primary rounded-pill">Tweetar</button>
     </form>
-
     <h2 class="mt-4">Tweets Cadastrados</h2>
     <div class="row">
         <?php foreach ($items as $item): ?>
@@ -76,5 +47,4 @@ include 'includes/header.php';
         <?php endforeach; ?>
     </div>
 </div>
-
-<?php include 'includes/footer.php'; ?>
+<?php include __DIR__ . '/../components/footer.php'; ?>
