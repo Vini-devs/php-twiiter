@@ -10,7 +10,7 @@ $url = explode("/", $url);
 // print_r($url);
 $pagina =  $url[0];
 
-if (isset($url[1])) {
+if (isset($url[1]) && !is_numeric($url[1])) {
     $pagina = "{$url[0]}/$url[1]";
 }
 
@@ -31,7 +31,7 @@ match ($pagina) {
     'post/editar'               => PostController::editarPost(),
     'post/apagar'               => PostController::apagarPost($url[2]),
 
-    'resposta'                  => RespostaController::encontrarRespostas($url[2]),
+    'resposta'                  => RespostaController::encontrarRespostas($url[1]),
     'resposta/criar'            => RespostaController::criarResposta($url[2]),
     'resposta/editar'           => RespostaController::editarResposta($url[2]),
     'resposta/apagar'           => RespostaController::apagarResposta($url[2]),

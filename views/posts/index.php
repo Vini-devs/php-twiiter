@@ -1,5 +1,4 @@
 <?php
-require_once __DIR__ . '/../../services/session.php';
 // A view não deve conter lógica de sessão, manipulação de GET ou redirecionamentos.
 // Receba as variáveis $item do controller.
 include __DIR__ . '/../layout/header.php';
@@ -12,7 +11,7 @@ include __DIR__ . '/../layout/cards.php';
             tempo real!</p>
     </div>
     <div class="row justify-content-center">
-        <?php foreach ($posts as $post) cardPosts(
+        <?php foreach ($posts as $post) cardPost(
             $post['id_post'], 
             $post['nickname'], 
             $post['conteudo'], 
