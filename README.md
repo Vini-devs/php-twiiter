@@ -10,7 +10,7 @@ Este projeto é uma aplicação PHP que simula uma timeline do Twitter. Os usuá
 - **Detalhes do Tweet**: Cada tweet possui uma página dedicada mostrando informações detalhadas.
 - **Filtragem**: Os usuários podem filtrar tweets por tópico em `pesquisar.php`.
 - **Autenticação de Usuário**: Um sistema de login restringe o acesso à área protegida (`login.php` e `protected.php`).
-- **Área Protegida**: Usuários autenticados podem adicionar novos tweets e visualizar a lista de tweets cadastrados em `protected.php`.
+- **Área Protegida**: Usuários autenticados podem adicionar criars tweets e visualizar a lista de tweets cadastrados em `protected.php`.
 
 ## Estrutura de Arquivos
 
@@ -18,7 +18,7 @@ Este projeto é uma aplicação PHP que simula uma timeline do Twitter. Os usuá
 php-twitter-clone
 ├── data
 │   └── items.php
-├── components
+├── layout
 │   ├── footer.php
 │   └── header.php
 ├── functions

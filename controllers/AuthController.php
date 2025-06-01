@@ -1,33 +1,27 @@
 <?php
-require_once __DIR__ . '/../services/session.php';
+require_once __DIR__ . '/../models/Auth.php';
 
-// controllers/AuthController.php
-require_once __DIR__ . '/../functions/helpers.php';
+require_once __DIR__ . '/../services/session.php';
 
 class AuthController {
     public static function login() {
-        $error_message = '';
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $email = $_POST['email'] ?? null;
-            $password = $_POST['password'] ?? null;
-            // Exemplo simples de autenticação
-            if (!is_null($email) && !is_null($password)) {
-                $resp = fazerLogin($email, $password);
+            $senha = $_POST['password'] ?? null;
 
-                if ($resp[0] == true) {
-                    $_SESSION['logged_in'] = true;
-                    redirect('?p=');
-                } else {
-                    echo $resp[1];
-                }
+            Auth::authenticate($email, $senha);
+
+            if (is_null($email) || is_null($senha)) {
+                header('Location: /login/');
             } else {
-                $error_message = 'Usuário ou senha inválidos!';
+                header('Location: /');
             }
         }
-        include __DIR__ . '/../views/login.php';
+
+        include __DIR__ . '/../views/auth/login.php';
     }
     public static function logout() {
         logout();
-        header('Location: ?p=');
+        header('Location: ?url=');
     }
 }

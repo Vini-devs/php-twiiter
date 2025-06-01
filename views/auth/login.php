@@ -1,8 +1,8 @@
 <?php
-require_once __DIR__ . '/../services/session.php';
+require_once __DIR__ . '/../../services/session.php';
 // A view não deve conter lógica de sessão, POST ou autenticação.
 // Receba a variável $error_message do controller.
-include __DIR__ . '/../components/header.php';
+include __DIR__ . '/../layout/header.php';
 ?>
 <div class="container mt-4">
     <h1 class="text-center">Login</h1>
@@ -23,4 +23,4 @@ include __DIR__ . '/../components/header.php';
         <button type="submit" class="btn btn-primary rounded-pill">Entrar</button>
     </form>
 </div>
-<?php include __DIR__ . '/../components/footer.php'; ?>
+<?php include __DIR__ . '/../layout/footer.php'; ?>

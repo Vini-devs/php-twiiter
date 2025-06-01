@@ -1,47 +1,52 @@
 <?php
-session_start();
-require_once 'services/banco.php';
 
-include 'data/items.php';
 include 'functions/helpers.php';
 
-$posts = $_SESSION['items'] ?? $items;
 
-$pagina = $_GET['p'] ?? null;
 
-require_once 'controllers/HomeController.php';
-require_once 'controllers/PostController.php';
-require_once 'controllers/AuthController.php';
-// if ($pagina = "" || !isset($pagina) || $pagina == null ) {
-//     HomeController::index();
-// }
-if ($pagina == 'login') {
-    AuthController::login();
-    exit;
-}
-if ($pagina == 'logout') {
-    AuthController::logout();
-    exit;
-}
-if ($pagina == 'novo') {
-    PostController::novo();
-    exit;
-}
-if ($pagina == 'detalhes') {
-    PostController::detalhes();
-    exit;
-}
-if ($pagina == 'explorar') {
-    PostController::explorar();
-    exit;
-}
-if ($pagina == 'pesquisar') {
-    PostController::pesquisar();
-    exit;
-}
-if ($pagina == 'protegido') {
-    PostController::protegido();
-    exit;
+// Captura a rota amigável (ex.: 'login', 'fornecedores/edit/5')
+$url = $_GET['url'] ?? null;
+$url = explode("/", $url);
+// print_r($url);
+$pagina =  $url[0];
+
+if (isset($url[1])) {
+    $pagina = "{$url[0]}/$url[1]";
 }
 
-HomeController::index();
+// Inclui controllers
+require __DIR__ . '/controllers/AuthController.php';
+
+require __DIR__ . '/controllers/PostController.php';
+require __DIR__ . '/controllers/RespostaController.php';
+
+match ($pagina) {
+    'login'                     => AuthController::login(),
+    'logout'                    => AuthController::logout(),
+        
+    'post'                      => PostController::index(),
+    'post/explorar'             => PostController::explorar(),
+    'post/pesquisar'            => PostController::pesquisar(),
+    'post/criar'                => PostController::criarPost(),
+    'post/editar'               => PostController::editarPost(),
+    'post/apagar'               => PostController::apagarPost($url[2]),
+
+    'resposta'                  => RespostaController::encontrarRespostas($url[2]),
+    'resposta/criar'            => RespostaController::criarResposta($url[2]),
+    'resposta/editar'           => RespostaController::editarResposta($url[2]),
+    'resposta/apagar'           => RespostaController::apagarResposta($url[2]),
+
+    // 'topico'                 => TopicoController::encontrarTopico($url[2]),
+    // 'topico/criar'           => TopicoController::criarTopico($url[2]),
+    // 'topico/editar'          => TopicoController::editarTopico($url[2]),
+    // 'topico/apagar'          => TopicoController::apagarTopico($url[2]),
+
+    // 'mensagem'                 => MensagemController::encontrarMensagem($url[2]),
+    // 'mensagem/criar'           => MensagemController::criarMensagem($url[2]),
+    // 'mensagem/editar'          => MensagemController::editarMensagem($url[2]),
+    // 'mensagem/apagar'          => MensagemController::apagarMensagem($url[2]),
+
+    default                     => PostController::index(),
+};
+
+exit;
