@@ -30,7 +30,8 @@
                 </nav>
                 <div class="d-flex align-items-center">
                     <?php if (isset($_SESSION['id_usuario'])) { ?>
-                    <div class="me-2 text-secondary">@<?= strtolower($_SESSION['nickname']) ?></div>
+                    <a href="/php-twitter/usuario"
+                        class="me-2 text-secondary ">@<?= strtolower($_SESSION['nickname']) ?></a>
                     <a href="/php-twitter/logout" class="btn btn-light text-danger rounded-pill"> Sair </a>
 
                     <a href="<?php echo isset($_SESSION['id_usuario']) ? '/php-twitter/post/criar' : '/php-twitter/login'; ?>"

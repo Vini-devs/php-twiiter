@@ -20,7 +20,7 @@ class PostController {
     public static function encontrarPost() {
         $posts = Post::encontrarPosts();
 
-        // include __DIR__ . '/../views/posts/index.php';
+        include __DIR__ . '/../views/posts/index.php';
     }
 
     public static function criarPost() {
@@ -41,7 +41,7 @@ class PostController {
         include __DIR__ . '/../views/posts/criar-post.php';
     }
 
-    public static function editarPost() {
+    public static function editarPost($idPost) {
         
     }
 

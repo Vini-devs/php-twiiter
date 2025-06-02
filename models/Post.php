@@ -18,6 +18,16 @@ class Post {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public static function encontrarPostsPorUsuario($usuarioId)  {
+        $banco = Banco::getConn();
+        $stmt = $banco->query("SELECT post.*, usuario.nickname 
+            FROM post 
+            INNER JOIN usuario ON post.id_usuario = usuario.id_usuario
+            WHERE post.id_usuario='$usuarioId'
+            ORDER BY post.data_postagem DESC");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public static function encontrarPostsRecentes()  {
         $banco = Banco::getConn();
         $stmt = $banco->query(

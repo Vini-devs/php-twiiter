@@ -2,6 +2,12 @@
 require_once __DIR__ . '/../services/banco.php';
 
 class Auth {
+    public static function encontrarUsuario($idUsuario) {
+        $banco = Banco::getConn();
+        $stmt = $banco->query("SELECT id_usuario, nickname, email, bio FROM usuario 
+            WHERE id_usuario='$idUsuario'");
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
     public static function authenticate($email, $senha_inserida) {
         $banco = Banco::getConn();

@@ -23,12 +23,13 @@ require __DIR__ . '/controllers/RespostaController.php';
 match ($pagina) {
     'login'                     => AuthController::login(),
     'logout'                    => AuthController::logout(),
+    'usuario'                   => AuthController::usuario(),
         
     'post'                      => PostController::index(),
     'post/explorar'             => PostController::explorar(),
     'post/pesquisar'            => PostController::pesquisar(),
     'post/criar'                => PostController::criarPost(),
-    'post/editar'               => PostController::editarPost(),
+    'post/editar'               => PostController::editarPost($url[2]),
     'post/apagar'               => PostController::apagarPost($url[2]),
 
     'resposta'                  => RespostaController::encontrarRespostas($url[1]),
