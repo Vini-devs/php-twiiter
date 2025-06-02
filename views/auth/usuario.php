@@ -15,8 +15,10 @@ include __DIR__ . '/../layout/cards.php';
                                 <h4 class="fw-bold mb-0 pt-2 text-primary">
                                     @<?php echo strtolower(str_replace(' ', '', escape($usuario['nickname'] ?? 'usuario'))); ?>
                                 </h4>
-                                Membro desde
-                                <?php echo isset($usuario['data_cadastro']) ? date('M Y', strtotime($usuario['data_cadastro'])) : '--'; ?>
+                                <?php if($usuario['tipo'] != "normal") { ?>
+                                <p class="text-danger">Este usuário é um <?php echo ucwords($usuario['tipo']) ?></p>
+                                <?php } ?>
+                        
                             </div>
                         </div>
 
@@ -27,10 +29,10 @@ include __DIR__ . '/../layout/cards.php';
                     </div>
                     <hr>
                     <div class="mb-3">
-                        <span class="fw-bold">Email: <?php echo $usuario['email']?> </span>
+                        <span><b>Email:</b> <?php echo $usuario['email']?> </span>
                     </div>
                     <div class="mb-3">
-                        <span class="fw-bold">Bio: <?php echo $usuario['bio']?></span>
+                        <span><b>Bio:</b> <?php echo $usuario['bio']?></span>
                     </div>
                     <hr>
 

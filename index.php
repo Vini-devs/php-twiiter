@@ -24,6 +24,7 @@ match ($pagina) {
     'login'                     => AuthController::login(),
     'logout'                    => AuthController::logout(),
     'usuario'                   => AuthController::usuario(),
+    'cadastro'                  => AuthController::cadastro(),
         
     'post'                      => PostController::index(),
     'post/explorar'             => PostController::explorar(),

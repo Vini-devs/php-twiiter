@@ -4,10 +4,11 @@ require_once __DIR__ . '/../services/banco.php';
 class Auth {
     public static function encontrarUsuario($idUsuario) {
         $banco = Banco::getConn();
-        $stmt = $banco->query("SELECT id_usuario, nickname, email, bio FROM usuario 
+        $stmt = $banco->query("SELECT id_usuario, tipo, nickname, email, bio FROM usuario 
             WHERE id_usuario='$idUsuario'");
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
     public static function criarUsuario($tipo, $nickname, $email, $senha, $bio = '') {
         $banco = Banco::getConn();
         $stmt = $banco->prepare("INSERT INTO usuario (tipo, nickname, email, senha, bio) VALUES (:tipo, :nickname, :email, :senha, :bio)");
@@ -49,6 +50,7 @@ class Auth {
             if ($senha == $senha_inserida) {
                 $_SESSION['id_usuario'] = $resp['id_usuario'] ?? null;
                 $_SESSION['nickname'] = $resp['nickname'] ?? null;
+                $_SESSION['tipo'] = $resp['tipo'] ?? null;
                 return true;
             }
         }

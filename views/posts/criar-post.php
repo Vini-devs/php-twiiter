@@ -7,7 +7,7 @@ include __DIR__ . '/../layout/header.php';
             <div class="card shadow-sm border-0 rounded-4">
                 <div class="card-body p-4">
                     <h4 class="mb-4 fw-bold text-primary">Novo Tweet</h4>
-                    <form action="criar" method="post">
+                    <form action="" method="post">
                         <div class="mb-3 d-flex align-items-start">
                             <i class="bi bi-person-circle text-secondary me-3" style="font-size:2.5rem;"></i>
                             <textarea class="form-control border-0 bg-light rounded-3" name="conteudo" rows="8"

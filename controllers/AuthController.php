@@ -11,6 +11,24 @@ class AuthController {
         
         include __DIR__ . '/../views/auth/usuario.php';
     }
+
+    public static function cadastro() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $nickname = $_POST['nickname'] ?? null;
+            $email = $_POST['email'] ?? null;
+            $senha = $_POST['password'] ?? null;
+
+            if (is_null($nickname) || is_null($email) || is_null($senha)) {
+                header('Location: /php-twitter/cadastro/');
+            } else {
+                Auth::criarUsuario("normal", $nickname, $email, $senha);
+                header('Location: /php-twitter/login/');
+            }
+        }
+
+        include __DIR__ . '/../views/auth/cadastro.php';
+    }
+
     public static function login() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $email = $_POST['email'] ?? null;
@@ -19,9 +37,9 @@ class AuthController {
             Auth::authenticate($email, $senha);
 
             if (is_null($email) || is_null($senha)) {
-                header('Location: /login/');
+                header('Location: /php-twitter/login/');
             } else {
-                header('Location: /');
+                header('Location: /php-twitter/');
             }
         }
 
@@ -29,6 +47,6 @@ class AuthController {
     }
     public static function logout() {
         logout();
-        header('Location: ?url=');
+        header('Location: /php-twitter/');
     }
 }

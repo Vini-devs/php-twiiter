@@ -2,7 +2,7 @@
 
 <h2>criar Fornecedor</h2>
 
-<form action="criar" method="post">
+<form action="" method="post">
     <input type="hidden" name="id" value="<?= $f['id'] ?>">
     
     <label>Empresa</label> 
