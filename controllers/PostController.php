@@ -42,7 +42,22 @@ class PostController {
     }
 
     public static function editarPost($idPost) {
-        
+        $post = Post::encontrarPostPorId($idPost);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $conteudo = $_POST['conteudo'] ?? null;
+            $anexo = $_POST['anexo'] ?? '';
+
+            Post::editarPost($idPost, $conteudo, $anexo);
+
+            if (is_null($idPost) || is_null($conteudo)) {
+                echo "<br> Erro ao postar, tente novamente";
+            } else {
+                header('Location: /php-twitter/');
+            }
+        }
+
+        include __DIR__ . '/../views/posts/editar-post.php';
     }
 
     public static function apagarPost($idPost) {

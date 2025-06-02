@@ -25,7 +25,7 @@
                     <a href="/php-twitter/post/pesquisar" class="btn btn-light rounded-pill me-2">Pesquisar</a>
                     <a href="/php-twitter/mensagens" class="btn btn-light rounded-pill me-2">DM</a>
                     <?php if (isset($_SESSION['id_usuario']) && $_SESSION['tipo'] != 'normal') { ?>
-                    <a href="/php-twitter/admin" class="btn btn-warning rounded-pill me-2">Admin</a>
+                    <a href="/php-twitter/dashboard" class="btn btn-warning rounded-pill me-2">dashboard</a>
                     <?php } ?>
                 </nav>
                 <div class="d-flex align-items-center">

@@ -7,7 +7,7 @@ require_once __DIR__ . '/../layout/cards.php';
     <div class="row justify-content-center">
         <!-- Post principal -->
         <?php if (isset($post)): ?>
-        <?php cardRespostaPost($post['id_post'], $post['nickname'], $post['conteudo'], $post['data_postagem'], $post['anexo'], $post['likes'] ?? 0); ?>
+        <?php cardRespostaPost($post['id_post'], $post['nickname'], $post['conteudo'], $post['data_postagem'], $post['anexo'], $post['likes'] ?? 0, $_SESSION['id_usuario'] == $post['id_usuario']); ?>
         <?php endif; ?>
     </div>
 
@@ -28,7 +28,8 @@ require_once __DIR__ . '/../layout/cards.php';
                         $resposta['conteudo'],
                         $resposta['data_postagem'],
                         $resposta['anexo'],
-                        $resposta['likes'] ?? 0
+                        $resposta['likes'] ?? 0,
+                        $_SESSION['id_usuario'] == $post['id_usuario']
                     ); ?>
         <?php endforeach; ?>
         <?php else: ?>

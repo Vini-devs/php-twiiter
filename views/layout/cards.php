@@ -1,5 +1,5 @@
 <?php
-function cardPost($id_post, $nickname, $conteudo, $data_postagem, $anexo, $likes) { ?>
+function cardPost($id_post, $nickname, $conteudo, $data_postagem, $anexo, $likes, $isLoggedUser = false) { ?>
 <div class="col-md-8 mb-4">
     <div class="card border-1 border-light-subtle rounded-4 shadow-sm bg-white">
         <div class="card-body d-flex flex-column">
@@ -7,6 +7,17 @@ function cardPost($id_post, $nickname, $conteudo, $data_postagem, $anexo, $likes
                 <i class="bi bi-person-circle text-secondary me-2" style="font-size:1.5rem;"></i>
                 <span
                     class="fw-bold text-primary">@<?php echo strtolower(str_replace(' ', '', escape($nickname))); ?></span>
+                <?php if ($isLoggedUser): ?>
+                <div class="ms-auto dropdown">
+                    <button class="btn btn-light btn-sm rounded-circle" type="button" id="dropdownMenuButton<?php echo $id_post; ?>" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-three-dots"></i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton<?php echo $id_post; ?>">
+                        <li><a class="dropdown-item" href="post/editar/<?php echo $id_post; ?>">Editar</a></li>
+                        <li><a class="dropdown-item text-danger" href="post/deletar/<?php echo $id_post; ?>">Deletar</a></li>
+                    </ul>
+                </div>
+                <?php endif; ?>
             </div>
             <p class="card-text mb-2"><?php echo escape($conteudo); ?></p>
             <?php if (!empty($anexo)): ?>
@@ -27,7 +38,7 @@ function cardPost($id_post, $nickname, $conteudo, $data_postagem, $anexo, $likes
 </div>
 <?php } ?>
 
-<?php function cardResposta($id_post_resposta, $id_post, $id_usuario, $nickname, $conteudo, $data_postagem, $anexo, $likes) { ?>
+<?php function cardResposta($id_post_resposta, $id_post, $id_usuario, $nickname, $conteudo, $data_postagem, $anexo, $likes, $isLoggedUser = false) { ?>
 <div class="col-md-7 mb-4">
     <div class="card border-0 border-start border-3 border-primary rounded-4 shadow-sm bg-light">
         <div class="card-body d-flex flex-column">
@@ -35,6 +46,17 @@ function cardPost($id_post, $nickname, $conteudo, $data_postagem, $anexo, $likes
                 <i class="bi bi-person-circle text-secondary me-2" style="font-size:1.3rem;"></i>
                 <span
                     class="fw-bold text-primary small">@<?php echo strtolower(str_replace(' ', '', escape($nickname ?? 'usuario'))); ?></span>
+                <?php if ($isLoggedUser): ?>
+                <div class="ms-auto dropdown">
+                    <button class="btn btn-light btn-sm rounded-circle" type="button" id="dropdownMenuButtonResposta<?php echo $id_post_resposta; ?>" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-three-dots"></i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonResposta<?php echo $id_post_resposta; ?>">
+                        <li><a class="dropdown-item" href="post/editar/<?php echo $id_post_resposta; ?>">Editar</a></li>
+                        <li><a class="dropdown-item text-danger" href="post/deletar/<?php echo $id_post_resposta; ?>">Deletar</a></li>
+                    </ul>
+                </div>
+                <?php endif; ?>
             </div>
             <p class="card-text mb-2"><?php echo escape($conteudo); ?></p>
             <?php if (!empty($anexo)): ?>
@@ -51,7 +73,7 @@ function cardPost($id_post, $nickname, $conteudo, $data_postagem, $anexo, $likes
 </div>
 <?php }?>
 
-<?php function cardRespostaPost($id_post, $nickname, $conteudo, $data_postagem, $anexo, $likes) { ?>
+<?php function cardRespostaPost($id_post, $nickname, $conteudo, $data_postagem, $anexo, $likes, $isLoggedUser = false) { ?>
 <div class="col-md-8 mb-4">
     <div class="card border-1 border-light-subtle rounded-4 shadow-sm bg-white">
         <div class="card-body d-flex flex-column">
@@ -59,6 +81,17 @@ function cardPost($id_post, $nickname, $conteudo, $data_postagem, $anexo, $likes
                 <i class="bi bi-person-circle text-secondary me-2" style="font-size:1.5rem;"></i>
                 <span
                     class="fw-bold text-primary">@<?php echo strtolower(str_replace(' ', '', escape($nickname))); ?></span>
+                <?php if ($isLoggedUser): ?>
+                <div class="ms-auto dropdown">
+                    <button class="btn btn-light btn-sm rounded-circle" type="button" id="dropdownMenuButtonPost<?php echo $id_post; ?>" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-three-dots"></i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonPost<?php echo $id_post; ?>">
+                        <li><a class="dropdown-item" href="post/editar/<?php echo $id_post; ?>">Editar</a></li>
+                        <li><a class="dropdown-item text-danger" href="post/deletar/<?php echo $id_post; ?>">Deletar</a></li>
+                    </ul>
+                </div>
+                <?php endif; ?>
             </div>
             <p class="card-text mb-2"><?php echo escape($conteudo); ?></p>
             <?php if (!empty($anexo)): ?>

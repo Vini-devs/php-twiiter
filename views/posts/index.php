@@ -17,7 +17,9 @@ include __DIR__ . '/../layout/cards.php';
             $post['conteudo'], 
             $post['data_postagem'], 
             $post['anexo'], 
-            $post['likes']);
+            $post['likes'],
+            $_SESSION['id_usuario'] == $post['id_usuario']
+        );
         ?>
     </div>
 </div>

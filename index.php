@@ -2,9 +2,6 @@
 
 include 'functions/helpers.php';
 
-
-
-// Captura a rota amigável (ex.: 'login', 'fornecedores/edit/5')
 $url = $_GET['url'] ?? null;
 $url = explode("/", $url);
 // print_r($url);
@@ -14,7 +11,6 @@ if (isset($url[1]) && !is_numeric($url[1])) {
     $pagina = "{$url[0]}/$url[1]";
 }
 
-// Inclui controllers
 require __DIR__ . '/controllers/AuthController.php';
 
 require __DIR__ . '/controllers/PostController.php';
@@ -25,6 +21,7 @@ match ($pagina) {
     'logout'                    => AuthController::logout(),
     'usuario'                   => AuthController::usuario(),
     'cadastro'                  => AuthController::cadastro(),
+    // 'dashboard'                  => AuthController::dashboard(),
         
     'post'                      => PostController::index(),
     'post/explorar'             => PostController::explorar(),
