@@ -33,9 +33,9 @@
                     <div class="me-2 text-secondary">@<?= strtolower($_SESSION['nickname']) ?></div>
                     <a href="/php-twitter/logout" class="btn btn-light text-danger rounded-pill"> Sair </a>
 
-                    <a href="<?php echo isset($_SESSION['id_usuario']) ? '/php-twitter/protected' : '/php-twitter/login'; ?>"
+                    <a href="<?php echo isset($_SESSION['id_usuario']) ? '/php-twitter/post/criar' : '/php-twitter/login'; ?>"
                         class="btn btn-primary rounded-pill ms-2 fw-bold">
-                        <i class="bi bi-plus-circle me-1"></i> criar Tweet
+                        <i class="bi bi-plus-circle me-1"></i> Criar Tweet
                     </a>
                     <?php } else { ?>
                     <a href="/php-twitter/login" class="btn btn-primary rounded-pill ms-2 fw-bold">

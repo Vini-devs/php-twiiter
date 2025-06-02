@@ -28,10 +28,17 @@ class Post {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
-    public static function criarPost($nome, $email, $tel, $end) {
+    public static function criarPost($idUsuario, $conteudo, $anexo) {
         $banco = Banco::getConn();
-        $sql = "INSERT INTO fornecedores (nome_empresa, telefone_principal, email_principal, endereco) VALUES ('$nome','$tel','$email','$end')";
-        return $banco->query($sql);
+        $stmt = $banco->prepare(
+            "INSERT INTO post (id_usuario, conteudo, data_postagem, anexo, likes)
+            VALUES (:id_usuario, :conteudo, current_timestamp(), :anexo, 0)"
+        );
+        return $stmt->execute([
+            ':id_usuario' => $idUsuario,
+            ':conteudo' => $conteudo,
+            ':anexo' => $anexo
+        ]);
     }
     
     public static function apagarPost($idPost) {

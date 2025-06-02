@@ -24,7 +24,21 @@ class PostController {
     }
 
     public static function criarPost() {
-        
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $idUsuario = $_SESSION['id_usuario'] ?? null;
+            $conteudo = $_POST['conteudo'] ?? null;
+            $anexo = $_POST['anexo'] ?? '';
+
+            Post::criarPost($idUsuario, $conteudo, $anexo);
+
+            if (is_null($idUsuario) || is_null($conteudo)) {
+                echo "<br> Erro ao postar, tente novamente";
+            } else {
+                header('Location: /php-twitter/');
+            }
+        }
+
+        include __DIR__ . '/../views/posts/criar-post.php';
     }
 
     public static function editarPost() {
