@@ -100,7 +100,8 @@ CREATE TABLE `usuario` (
   `tipo` enum('normal','moderador','admin') NOT NULL DEFAULT 'normal',
   `nickname` varchar(30) NOT NULL,
   `email` varchar(30) NOT NULL,
-  `senha` varchar(30) NOT NULL
+  `senha` varchar(30) NOT NULL,
+  `bio` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --

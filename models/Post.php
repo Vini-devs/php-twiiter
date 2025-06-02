@@ -50,10 +50,21 @@ class Post {
             ':anexo' => $anexo
         ]);
     }
+
+    public static function editarPost($idPost, $conteudo, $anexo) {
+        $banco = Banco::getConn();
+        $stmt = $banco->prepare("UPDATE post SET conteudo = :conteudo, anexo = :anexo WHERE id_post = :id_post");
+        return $stmt->execute([
+            ':conteudo' => $conteudo,
+            ':anexo' => $anexo,
+            ':id_post' => $idPost
+        ]);
+    }
     
     public static function apagarPost($idPost) {
         $banco = Banco::getConn();
-        return $banco->query("DELETE FROM fornecedores WHERE id='$idPost'");
+        $stmt = $banco->prepare("DELETE FROM post WHERE id_post = :id_post");
+        return $stmt->execute([':id_post' => $idPost]);
     }
     
 }

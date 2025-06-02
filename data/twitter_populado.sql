@@ -173,19 +173,20 @@ CREATE TABLE `usuario` (
   `tipo` enum('normal','moderador','admin') NOT NULL DEFAULT 'normal',
   `nickname` varchar(30) NOT NULL,
   `email` varchar(30) NOT NULL,
-  `senha` varchar(30) NOT NULL
+  `senha` varchar(30) NOT NULL,
+  `bio` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `usuario`
 --
 
-INSERT INTO `usuario` (`id_usuario`, `tipo`, `nickname`, `email`, `senha`) VALUES
-(1, 'admin', 'admin1', 'admin1@email.com', 'senha123'),
-(2, 'admin', 'admin2', 'admin2@email.com', 'senha123'),
-(3, 'moderador', 'mod1', 'mod1@email.com', 'senha123'),
-(4, 'normal', 'user1', 'user1@email.com', 'senha123'),
-(5, 'normal', 'user2', 'user2@email.com', 'senha123');
+INSERT INTO `usuario` (`id_usuario`, `tipo`, `nickname`, `email`, `senha`, `bio`) VALUES
+(1, 'admin', 'admin1', 'admin1@email.com', 'senha123', 'Administrador principal do sistema.'),
+(2, 'admin', 'admin2', 'admin2@email.com', 'senha123', 'Administrador auxiliar.'),
+(3, 'moderador', 'mod1', 'mod1@email.com', 'senha123', 'Moderador da comunidade.'),
+(4, 'normal', 'user1', 'user1@email.com', 'senha123', 'Usuário comum, gosta de tecnologia.'),
+(5, 'normal', 'user2', 'user2@email.com', 'senha123', 'Usuário comum, fã de esportes.');
 
 --
 -- Indexes for dumped tables

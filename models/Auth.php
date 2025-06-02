@@ -8,6 +8,34 @@ class Auth {
             WHERE id_usuario='$idUsuario'");
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    public static function criarUsuario($tipo, $nickname, $email, $senha, $bio = '') {
+        $banco = Banco::getConn();
+        $stmt = $banco->prepare("INSERT INTO usuario (tipo, nickname, email, senha, bio) VALUES (:tipo, :nickname, :email, :senha, :bio)");
+        return $stmt->execute([
+            ':tipo' => $tipo,
+            ':nickname' => $nickname,
+            ':email' => $email,
+            ':senha' => $senha,
+            ':bio' => $bio
+        ]);
+    }
+
+    public static function editarUsuario($idUsuario, $nickname, $email, $bio) {
+        $banco = Banco::getConn();
+        $stmt = $banco->prepare("UPDATE usuario SET nickname = :nickname, email = :email, bio = :bio WHERE id_usuario = :id_usuario");
+        return $stmt->execute([
+            ':nickname' => $nickname,
+            ':email' => $email,
+            ':bio' => $bio,
+            ':id_usuario' => $idUsuario
+        ]);
+    }
+
+    public static function apagarUsuario($idUsuario) {
+        $banco = Banco::getConn();
+        $stmt = $banco->prepare("DELETE FROM usuario WHERE id_usuario = :id_usuario");
+        return $stmt->execute([':id_usuario' => $idUsuario]);
+    }
 
     public static function authenticate($email, $senha_inserida) {
         $banco = Banco::getConn();
