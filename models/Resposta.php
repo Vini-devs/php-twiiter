@@ -11,6 +11,15 @@ class Resposta {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    static function encontrarRespostaPorId($respostaId) {
+        $banco = Banco::getConn();
+        $stmt = $banco->query("SELECT post_resposta.*, usuario.nickname 
+            FROM post_resposta 
+            INNER JOIN usuario ON post_resposta.id_usuario = usuario.id_usuario
+            WHERE id_post_resposta='$respostaId'");
+        return $stmt->fetch();
+    }
+
     public static function criarResposta($id_post, $id_usuario, $conteudo, $anexo = '', $likes = 0) {
         $banco = Banco::getConn();
         $stmt = $banco->prepare("INSERT INTO post_resposta (id_post, id_usuario, conteudo, data_postagem, anexo, likes) VALUES (:id_post, :id_usuario, :conteudo, current_timestamp(), :anexo, :likes)");

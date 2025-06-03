@@ -61,9 +61,9 @@ function cardPost($id_post, $nickname, $conteudo, $data_postagem, $anexo, $likes
                     <ul class="dropdown-menu"
                         aria-labelledby="dropdownMenuButtonResposta<?php echo $id_post_resposta; ?>">
                         <li><a class="dropdown-item"
-                                href="/php-twitter/post/editar/<?php echo $id_post_resposta; ?>">Editar</a></li>
+                                href="/php-twitter/resposta/editar/<?php echo $id_post_resposta; ?>">Editar</a></li>
                         <li><a class="dropdown-item text-danger"
-                                href="/php-twitter/post/apagar/<?php echo $id_post_resposta; ?>"
+                                href="/php-twitter/resposta/apagar/<?php echo $id_post_resposta; ?>"
                                 onclick="return confirm('Tem certeza que deseja excluir esta resposta?');">Apagar</a>
                         </li>
                     </ul>

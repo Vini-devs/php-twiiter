@@ -30,7 +30,7 @@ match ($pagina) {
     'post/apagar'               => PostController::apagarPost($url[2]),
 
     'resposta'                  => RespostaController::encontrarRespostas($url[1]),
-    'resposta/criar'            => RespostaController::criarResposta($url[2]),
+    'resposta/criar'            => RespostaController::criarResposta($url[1]),
     'resposta/editar'           => RespostaController::editarResposta($url[2]),
     'resposta/apagar'           => RespostaController::apagarResposta($url[2]),
 

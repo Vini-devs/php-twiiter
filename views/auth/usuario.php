@@ -18,7 +18,7 @@ include __DIR__ . '/../layout/cards.php';
                                 <?php if($usuario['tipo'] != "normal") { ?>
                                 <p class="text-danger">Este usuário é um <?php echo ucwords($usuario['tipo']) ?></p>
                                 <?php } ?>
-                        
+
                             </div>
                         </div>
 
@@ -43,7 +43,9 @@ include __DIR__ . '/../layout/cards.php';
                             $post['conteudo'], 
                             $post['data_postagem'], 
                             $post['anexo'], 
-                            $post['likes']);
+                            $post['likes'],
+                            $id_usuario == $post['id_usuario'] 
+                        );
                         ?>
                     </div>
                 </div>

@@ -53,7 +53,7 @@ class PostController {
             if (is_null($idPost) || is_null($conteudo)) {
                 echo "<br> Erro ao postar, tente novamente";
             } else {
-                header("Location: /php-twitter/" .  $_SESSION['url_anterior']);
+                header("Location: /php-twitter/");
             }
         }
 
