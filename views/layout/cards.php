@@ -9,12 +9,16 @@ function cardPost($id_post, $nickname, $conteudo, $data_postagem, $anexo, $likes
                     class="fw-bold text-primary">@<?php echo strtolower(str_replace(' ', '', escape($nickname))); ?></span>
                 <?php if ($isLoggedUser): ?>
                 <div class="ms-auto dropdown">
-                    <button class="btn btn-light btn-sm rounded-circle" type="button" id="dropdownMenuButton<?php echo $id_post; ?>" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-light btn-sm rounded-circle" type="button"
+                        id="dropdownMenuButton<?php echo $id_post; ?>" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-three-dots"></i>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton<?php echo $id_post; ?>">
-                        <li><a class="dropdown-item" href="post/editar/<?php echo $id_post; ?>">Editar</a></li>
-                        <li><a class="dropdown-item text-danger" href="post/deletar/<?php echo $id_post; ?>">Deletar</a></li>
+                        <li><a class="dropdown-item" href="/php-twitter/post/editar/<?php echo $id_post; ?>">Editar</a>
+                        </li>
+                        <li><a class="dropdown-item text-danger" href="/php-twitter/post/apagar/<?php echo $id_post; ?>"
+                                onclick="return confirm('Tem certeza que deseja excluir este post?');">Apagar</a>
+                        </li>
                     </ul>
                 </div>
                 <?php endif; ?>
@@ -28,8 +32,9 @@ function cardPost($id_post, $nickname, $conteudo, $data_postagem, $anexo, $likes
                 <span class="text-muted small"><i class="bi bi-clock me-1"></i>
                     <?php echo date('d/m/Y H:i:s', strtotime($data_postagem)); ?></span>
                 <span class="d-flex align-items-center gap-3 justify-content-end">
-                    <a href="resposta/<?php echo $id_post; ?>" class="btn btn-light rounded-pill py-0 px-3"><i
-                            class="bi bi-chat-dots me-1"></i> Ver conversa</a>
+                    <a href="/php-twitter/resposta/<?php echo $id_post; ?>"
+                        class="btn btn-light rounded-pill py-0 px-3"><i class="bi bi-chat-dots me-1"></i> Ver
+                        conversa</a>
                     <span class="text-muted small"><i class="bi bi-heart me-1"></i> <?php echo (int)$likes; ?></span>
                 </span>
             </div>
@@ -48,12 +53,19 @@ function cardPost($id_post, $nickname, $conteudo, $data_postagem, $anexo, $likes
                     class="fw-bold text-primary small">@<?php echo strtolower(str_replace(' ', '', escape($nickname ?? 'usuario'))); ?></span>
                 <?php if ($isLoggedUser): ?>
                 <div class="ms-auto dropdown">
-                    <button class="btn btn-light btn-sm rounded-circle" type="button" id="dropdownMenuButtonResposta<?php echo $id_post_resposta; ?>" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-light btn-sm rounded-circle" type="button"
+                        id="dropdownMenuButtonResposta<?php echo $id_post_resposta; ?>" data-bs-toggle="dropdown"
+                        aria-expanded="false">
                         <i class="bi bi-three-dots"></i>
                     </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonResposta<?php echo $id_post_resposta; ?>">
-                        <li><a class="dropdown-item" href="post/editar/<?php echo $id_post_resposta; ?>">Editar</a></li>
-                        <li><a class="dropdown-item text-danger" href="post/deletar/<?php echo $id_post_resposta; ?>">Deletar</a></li>
+                    <ul class="dropdown-menu"
+                        aria-labelledby="dropdownMenuButtonResposta<?php echo $id_post_resposta; ?>">
+                        <li><a class="dropdown-item"
+                                href="/php-twitter/post/editar/<?php echo $id_post_resposta; ?>">Editar</a></li>
+                        <li><a class="dropdown-item text-danger"
+                                href="/php-twitter/post/apagar/<?php echo $id_post_resposta; ?>"
+                                onclick="return confirm('Tem certeza que deseja excluir esta resposta?');">Apagar</a>
+                        </li>
                     </ul>
                 </div>
                 <?php endif; ?>
@@ -83,12 +95,17 @@ function cardPost($id_post, $nickname, $conteudo, $data_postagem, $anexo, $likes
                     class="fw-bold text-primary">@<?php echo strtolower(str_replace(' ', '', escape($nickname))); ?></span>
                 <?php if ($isLoggedUser): ?>
                 <div class="ms-auto dropdown">
-                    <button class="btn btn-light btn-sm rounded-circle" type="button" id="dropdownMenuButtonPost<?php echo $id_post; ?>" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-light btn-sm rounded-circle" type="button"
+                        id="dropdownMenuButtonPost<?php echo $id_post; ?>" data-bs-toggle="dropdown"
+                        aria-expanded="false">
                         <i class="bi bi-three-dots"></i>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonPost<?php echo $id_post; ?>">
-                        <li><a class="dropdown-item" href="post/editar/<?php echo $id_post; ?>">Editar</a></li>
-                        <li><a class="dropdown-item text-danger" href="post/deletar/<?php echo $id_post; ?>">Deletar</a></li>
+                        <li><a class="dropdown-item" href="/php-twitter/post/editar/<?php echo $id_post; ?>">Editar</a>
+                        </li>
+                        <li><a class="dropdown-item text-danger" href="/php-twitter/post/apagar/<?php echo $id_post; ?>"
+                                onclick="return confirm('Tem certeza que deseja excluir este post?');">Apagar</a>
+                        </li>
                     </ul>
                 </div>
                 <?php endif; ?>

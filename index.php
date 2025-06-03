@@ -12,7 +12,6 @@ if (isset($url[1]) && !is_numeric($url[1])) {
 }
 
 require __DIR__ . '/controllers/AuthController.php';
-
 require __DIR__ . '/controllers/PostController.php';
 require __DIR__ . '/controllers/RespostaController.php';
 

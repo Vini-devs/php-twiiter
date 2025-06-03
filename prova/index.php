@@ -1,24 +1,18 @@
 <?php
 
-// Não mudar nada aqui, tudo deve funcinar normalmente
-/// ---------------------------------------------------------------
+session_start(); // Adicione esta linha no topo, se ainda não existir
 
-// Mini gerenciador de rotas usando match
-// Captura a rota amigável (ex.: 'login', 'fornecedores/edit/5')
 $url = $_GET['url'] ?? null;
 $url = explode("/", $url);
 // print_r($url);
-// echo "<hr>";
 $pagina =  $url[0];
 
 if (isset($url[1])) {
     $pagina = "{$url[0]}/$url[1]";
-}
+} 
 
-/// ---------------------------------------------------------------
+$_SESSION['ultimo_url'] = $_GET['url'] ?? '';
 
-
-// Inclui controllers
 require __DIR__ . '/controllers/HomeController.php';
 require __DIR__ . '/controllers/FornecedorController.php';
 require __DIR__ . '/controllers/ServicoController.php';

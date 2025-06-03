@@ -3,6 +3,8 @@
 // Receba as variáveis $item do controller.
 include __DIR__ . '/../layout/header.php';
 include __DIR__ . '/../layout/cards.php';
+
+$id_usuario = $_SESSION['id_usuario'] ?? null;
 ?>
 <div class="container mt-4">
     <div class="hero text-center p-5 rounded bg-white border mb-4">
@@ -18,7 +20,7 @@ include __DIR__ . '/../layout/cards.php';
             $post['data_postagem'], 
             $post['anexo'], 
             $post['likes'],
-            $_SESSION['id_usuario'] == $post['id_usuario']
+            $id_usuario == $post['id_usuario'] 
         );
         ?>
     </div>

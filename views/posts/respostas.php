@@ -29,7 +29,7 @@ require_once __DIR__ . '/../layout/cards.php';
                         $resposta['data_postagem'],
                         $resposta['anexo'],
                         $resposta['likes'] ?? 0,
-                        $_SESSION['id_usuario'] == $post['id_usuario']
+                        $_SESSION['id_usuario'] == $_SESSION['id_usuario']
                     ); ?>
         <?php endforeach; ?>
         <?php else: ?>

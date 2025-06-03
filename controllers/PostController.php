@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../models/Post.php';
 require_once __DIR__ . '/../services/session.php';
+require_once __DIR__ . '/../models/Post.php';
 
 class PostController {
     public static function index() {
@@ -53,7 +53,7 @@ class PostController {
             if (is_null($idPost) || is_null($conteudo)) {
                 echo "<br> Erro ao postar, tente novamente";
             } else {
-                header('Location: /php-twitter/');
+                header("Location: /php-twitter/" .  $_SESSION['url_anterior']);
             }
         }
 
@@ -61,6 +61,8 @@ class PostController {
     }
 
     public static function apagarPost($idPost) {
-        
+        Post::apagarPost($idPost);
+
+        header('Location: /php-twitter/');
     }
 }
