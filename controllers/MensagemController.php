@@ -69,13 +69,13 @@ class MensagemController {
             }
         }
 
-        include __DIR__ . '/../views/mensagem/editar-mensagem.php';
+        include __DIR__ . '/../views/mensagens/editar-mensagem.php';
     }
     
     public static function apagarMensagem($idMensagem) {
         Mensagem::apagarMensagem($idMensagem);
 
-        header('Location: /php-twitter/mensagem/');
+        header('Location: /php-twitter/mensagem');
     }
 }
 

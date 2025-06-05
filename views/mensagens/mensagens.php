@@ -45,9 +45,9 @@ include __DIR__ . '/../layout/dm.php';
                             <div class="input-group">
                                 <input type="text" class="form-control" name="conteudo" placeholder="Mensagem..."
                                     required>
-                                <?php if (!isset($_GET['url'][1])) { ?>
+                                <?php if (!$usuarioSelecionado) { ?>
                                 <input type="text" class="form-control" name="nickname_destinatario"
-                                    placeholder="User..." required>
+                                    placeholder="@User..." required>
                                 <?php } else { ?>
                                 <input type="hidden" name="id_destinatario"
                                     value="<?php echo $usuarioSelecionado['id_usuario']; ?>">

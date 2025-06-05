@@ -25,10 +25,10 @@ function listaUsuario($id, $nickname) { ?>
         <ul class="dropdown-menu"
             aria-labelledby="dropdownMenuButtonMensagem<?php echo $mensagem['id_mensagem_privada']; ?>">
             <li><a class="dropdown-item"
-                    href="/php-twitter/resposta/editar/<?php echo $mensagem['id_mensagem_privada']; ?>">Editar</a>
+                    href="/php-twitter/mensagem/editar/<?php echo $mensagem['id_mensagem_privada']; ?>">Editar</a>
             </li>
             <li><a class="dropdown-item text-danger"
-                    href="/php-twitter/resposta/apagar/<?php echo $mensagem['id_mensagem_privada']; ?>"
+                    href="/php-twitter/mensagem/apagar/<?php echo $mensagem['id_mensagem_privada']; ?>"
                     onclick="return confirm('Tem certeza que deseja excluir esta mensagem?');">Apagar</a>
             </li>
         </ul>
