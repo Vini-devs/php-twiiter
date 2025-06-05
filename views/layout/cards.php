@@ -32,13 +32,12 @@ function cardPost($id_post, $nickname, $conteudo, $data_postagem, $anexo, $likes
                 <span class="text-muted small"><i class="bi bi-clock me-1"></i>
                     <?php echo date('d/m/Y H:i:s', strtotime($data_postagem)); ?></span>
                 <span class="d-flex align-items-center gap-3 justify-content-end">
-                    <?php if ($_GET['url'] != "resposta/$id_post"):?>
-
+                    <?php if (!isset($_GET['url']) || $_GET['url'] != "resposta/$id_post"):?>
                     <a href="/php-twitter/resposta/<?php echo $id_post; ?>"
                         class="btn btn-light rounded-pill py-0 px-3"><i class="bi bi-chat-dots me-1"></i> Ver
                         conversa</a>
                     <?php endif; ?>
-                    <?php if ($_GET['url'] != "resposta/criar/$id_post"): ?>
+                    <?php if (!isset($_GET['url']) || $_GET['url'] != "resposta/criar/$id_post"): ?>
                     <a href="/php-twitter/resposta/criar/<?php echo $id_post; ?>"
                         class="btn btn-light rounded-pill py-0 px-3"><i class="bi bi-chat me-1"></i> Responder</a>
                     <?php endif; ?>
