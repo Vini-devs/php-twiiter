@@ -6,7 +6,7 @@ class PostController {
     public static function index() {
         $posts = Post::encontrarPostsRecentes();
 
-        include __DIR__ . '/../views/posts/index.php';
+        include __DIR__ . '/../views/posts/posts.php';
     }
 
     public static function explorar() {
@@ -20,7 +20,7 @@ class PostController {
     public static function encontrarPost() {
         $posts = Post::encontrarPosts();
 
-        include __DIR__ . '/../views/posts/index.php';
+        include __DIR__ . '/../views/posts/posts.php';
     }
 
     public static function criarPost() {

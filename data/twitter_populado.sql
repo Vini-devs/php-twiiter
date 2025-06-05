@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `mensagem_privada` (
   `id_mensagem_privada` int(11) NOT NULL,
-  `id_usuario_remente` int(11) NOT NULL,
+  `id_usuario_remetente` int(11) NOT NULL,
   `id_usuario_destinatario` int(11) NOT NULL,
   `conteudo` varchar(255) NOT NULL,
   `data_envio` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -39,7 +39,7 @@ CREATE TABLE `mensagem_privada` (
 -- Dumping data for table `mensagem_privada`
 --
 
-INSERT INTO `mensagem_privada` (`id_mensagem_privada`, `id_usuario_remente`, `id_usuario_destinatario`, `conteudo`, `data_envio`) VALUES
+INSERT INTO `mensagem_privada` (`id_mensagem_privada`, `id_usuario_remetente`, `id_usuario_destinatario`, `conteudo`, `data_envio`) VALUES
 (1, 1, 2, 'Olá admin2!', '2025-05-24 11:46:56'),
 (2, 2, 3, 'Ei moderador!', '2025-05-24 11:46:56'),
 (3, 4, 5, 'E aí user2!', '2025-05-24 11:46:56'),
@@ -197,7 +197,7 @@ INSERT INTO `usuario` (`id_usuario`, `tipo`, `nickname`, `email`, `senha`, `bio`
 --
 ALTER TABLE `mensagem_privada`
   ADD PRIMARY KEY (`id_mensagem_privada`),
-  ADD KEY `remetente` (`id_usuario_remente`),
+  ADD KEY `remetente` (`id_usuario_remetente`),
   ADD KEY `destinatario` (`id_usuario_destinatario`);
 
 --
@@ -284,7 +284,7 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `mensagem_privada`
   ADD CONSTRAINT `destinatario` FOREIGN KEY (`id_usuario_destinatario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `remetente` FOREIGN KEY (`id_usuario_remente`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `remetente` FOREIGN KEY (`id_usuario_remetente`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `post_resposta`

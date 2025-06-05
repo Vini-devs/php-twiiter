@@ -14,6 +14,7 @@ if (isset($url[1]) && !is_numeric($url[1])) {
 require __DIR__ . '/controllers/AuthController.php';
 require __DIR__ . '/controllers/PostController.php';
 require __DIR__ . '/controllers/RespostaController.php';
+require __DIR__ . '/controllers/MensagemController.php';
 
 match ($pagina) {
     'login'                     => AuthController::login(),
@@ -39,7 +40,7 @@ match ($pagina) {
     // 'topico/editar'          => TopicoController::editarTopico($url[2]),
     // 'topico/apagar'          => TopicoController::apagarTopico($url[2]),
 
-    // 'mensagem'                 => MensagemController::encontrarMensagem($url[2]),
+    'mensagem'                 => MensagemController::encontrarMensagem($url[1] ?? null),
     // 'mensagem/criar'           => MensagemController::criarMensagem($url[2]),
     // 'mensagem/editar'          => MensagemController::editarMensagem($url[2]),
     // 'mensagem/apagar'          => MensagemController::apagarMensagem($url[2]),
