@@ -10,7 +10,23 @@ class RespostaController {
     }
 
     static function criarResposta($idPost) {
-        
+        $post = Post::encontrarPostPorId($idPost);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $idUsuario = $_SESSION['id_usuario'] ?? null;
+            $conteudo = $_POST['conteudo'] ?? null;
+            $anexo = '';
+            
+            Resposta::criarResposta($idPost, $idUsuario, $conteudo, $anexo);
+            
+            if (is_null($idUsuario) || is_null($conteudo) || is_null($idPost)) {
+                echo "<br> Erro ao responder, tente novamente";
+            } else {
+                header("Location: /php-twitter/resposta/$idPost");
+                exit;
+            }
+        }
+        include __DIR__ . '/../views/respostas/criar-resposta.php';
     }
     
     static function editarResposta($idResposta) {
