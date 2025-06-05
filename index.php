@@ -40,8 +40,7 @@ match ($pagina) {
     // 'topico/editar'          => TopicoController::editarTopico($url[2]),
     // 'topico/apagar'          => TopicoController::apagarTopico($url[2]),
 
-    'mensagem'                 => MensagemController::encontrarMensagem($url[1] ?? null),
-    // 'mensagem/criar'           => MensagemController::criarMensagem($url[2]),
+    'mensagem'                  => MensagemController::encontrarMensagem($url[1] ?? null),
     // 'mensagem/editar'          => MensagemController::editarMensagem($url[2]),
     // 'mensagem/apagar'          => MensagemController::apagarMensagem($url[2]),
 
