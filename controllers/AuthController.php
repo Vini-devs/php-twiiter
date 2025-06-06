@@ -14,6 +14,11 @@ class AuthController {
     }
 
     public static function editarUsuario($idUsuario) {
+        if ($idUsuario != $_SESSION['id_usuario'] || checarTipoUsuarioPassivo('admin')) {
+            header('Location: /php-twitter/usuario');
+            exit;
+        }
+
         $usuario = Usuario::encontrarUsuario($idUsuario);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -29,16 +34,19 @@ class AuthController {
             }
         }
 
-        include __DIR__ . '/../views/usuarios/editar.php';
+        include __DIR__ . '/../views/usuarios/editar-usuario.php';
     }
 
     public static function banirUsuario($idUsuario) {
+        checarTipoUsuario('admin');
         Usuario::banirUsuario($idUsuario);
         
         header('Location: /php-twitter/dashboard');
     }
 
     public static function dashboard() {
+        checarTipoUsuario(['admin', 'moderador']);
+
         $usuarios = Usuario::encontrarUsuarios();
         $topicos = Topico::encontrarTopicos();
         $posts = [];
@@ -74,10 +82,13 @@ class AuthController {
             
             if (is_null($email) || is_null($senha)) {
                 header('Location: /php-twitter/login');
-            } else {
-                Usuario::authenticate($email, $senha);
-                header('Location: /php-twitter');
             }
+
+            if (!Usuario::authenticate($email, $senha)) {
+                header('Location: /php-twitter/login');
+            }
+
+            header('Location: /php-twitter');
         }
 
         include __DIR__ . '/../views/usuarios/login.php';

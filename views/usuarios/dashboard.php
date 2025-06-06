@@ -37,9 +37,9 @@ include_once __DIR__ . '/../layout/header.php';
                             <td><?= htmlspecialchars($topico['nome']) ?></td>
                             <td><?= count($posts[$topico['id_topico']] ?? []) ?></td>
                             <td>
-                                <a href="/topicos/edit.php?id=<?= $topico['id_topico'] ?>"
+                                <a href="/php-twitter/topicos/editar/<?= $topico['id_topico'] ?>"
                                     class="btn btn-sm btn-warning">Editar</a>
-                                <a href="/topicos/delete.php?id=<?= $topico['id_topico'] ?>"
+                                <a href="/php-twitter/topicos/apagar/<?= $topico['id_topico'] ?>"
                                     class="btn btn-sm btn-danger"
                                     onclick="return confirm('Tem certeza que deseja excluir este tópico?')">Excluir</a>
                             </td>
@@ -80,9 +80,9 @@ include_once __DIR__ . '/../layout/header.php';
                             <td><?= htmlspecialchars($u['email']) ?></td>
                             <td><?= ucfirst($u['tipo']) ?></td>
                             <td>
-                                <a href="/usuarios/edit.php?id=<?= $u['id_usuario'] ?>"
+                                <a href="/php-twitter/usuario/editar/<?= $u['id_usuario'] ?>"
                                     class="btn btn-sm btn-warning">Editar</a>
-                                <a href="/usuarios/delete.php?id=<?= $u['id_usuario'] ?>" class="btn btn-sm btn-danger"
+                                <a href="/php-twitter/usuario/banir/<?= $u['id_usuario'] ?>" class="btn btn-sm btn-danger"
                                     onclick="return confirm('Tem certeza que deseja excluir este usuário?')">Excluir</a>
                             </td>
                         </tr>
