@@ -14,7 +14,7 @@ class AuthController {
     }
 
     public static function editarUsuario($idUsuario) {
-        if ($idUsuario != $_SESSION['id_usuario'] || checarTipoUsuarioPassivo('admin')) {
+        if ($idUsuario != $_SESSION['id_usuario'] && !checarTipoUsuarioPassivo('admin')) {
             header('Location: /php-twitter/usuario');
             exit;
         }
