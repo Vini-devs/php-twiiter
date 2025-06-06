@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2025 at 04:47 PM
+-- Generation Time: Jun 06, 2025 at 03:40 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -43,7 +43,8 @@ INSERT INTO `mensagem_privada` (`id_mensagem_privada`, `id_usuario_remetente`, `
 (1, 1, 2, 'Olá admin2!', '2025-05-24 11:46:56'),
 (2, 2, 3, 'Ei moderador!', '2025-05-24 11:46:56'),
 (3, 4, 5, 'E aí user2!', '2025-05-24 11:46:56'),
-(4, 5, 1, 'Olá admin1!', '2025-05-24 11:46:56');
+(4, 5, 1, 'Olá admin1!', '2025-05-24 11:46:56'),
+(8, 1, 2, 'MENSAGEM TESTE3', '2025-06-05 19:44:11');
 
 -- --------------------------------------------------------
 
@@ -105,8 +106,8 @@ INSERT INTO `post_resposta` (`id_post_resposta`, `id_post`, `id_usuario`, `conte
 (1, 1, 3, 'Comentário do moderador no post 1', '2025-05-24 11:46:56', '', 2),
 (2, 4, 4, 'Comentário do user1 no post 4', '2025-05-24 11:46:56', '', 1),
 (3, 7, 5, 'Comentário do user2 no post 7', '2025-05-24 11:46:56', '', 0),
-(4, 10, 1, 'Comentário do admin1 no post 10', '2025-05-24 11:46:56', '', 3),
-(5, 13, 2, 'Comentário do admin2 no post 13', '2025-05-24 11:46:56', '', 4);
+(5, 13, 2, 'Comentário do admin2 no post 13', '2025-05-24 11:46:56', '', 4),
+(7, 2, 1, 'TESTEADMIN', '2025-06-04 21:53:06', '', 0);
 
 -- --------------------------------------------------------
 
@@ -173,7 +174,7 @@ CREATE TABLE `usuario` (
   `tipo` enum('normal','moderador','admin') NOT NULL DEFAULT 'normal',
   `nickname` varchar(30) NOT NULL,
   `email` varchar(30) NOT NULL,
-  `senha` varchar(30) NOT NULL,
+  `senha` varchar(100) NOT NULL,
   `bio` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -182,11 +183,16 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `tipo`, `nickname`, `email`, `senha`, `bio`) VALUES
-(1, 'admin', 'admin1', 'admin1@email.com', 'senha123', 'Administrador principal do sistema.'),
-(2, 'admin', 'admin2', 'admin2@email.com', 'senha123', 'Administrador auxiliar.'),
-(3, 'moderador', 'mod1', 'mod1@email.com', 'senha123', 'Moderador da comunidade.'),
-(4, 'normal', 'user1', 'user1@email.com', 'senha123', 'Usuário comum, gosta de tecnologia.'),
-(5, 'normal', 'user2', 'user2@email.com', 'senha123', 'Usuário comum, fã de esportes.');
+(1, 'admin', 'admin1', 'admin1@email.com', '$2y$10$//C4OVRMC4kBRxZ2H7jlEO7r9LKk66b0aCi5KkUgp51FgKAYk9euq', 'Administrador principal do sistema.'),
+(2, 'admin', 'admin2', 'admin2@email.com', '$2y$10$//C4OVRMC4kBRxZ2H7jlEO7r9LKk66b0aCi5KkUgp51FgKAYk9euq', 'Administrador auxiliar.'),
+(3, 'moderador', 'mod1', 'mod1@email.com', '$2y$10$//C4OVRMC4kBRxZ2H7jlEO7r9LKk66b0aCi5KkUgp51FgKAYk9euq', 'Moderador da comunidade.'),
+(4, 'normal', 'user1', 'user1@email.com', '$2y$10$//C4OVRMC4kBRxZ2H7jlEO7r9LKk66b0aCi5KkUgp51FgKAYk9euq', 'Usuário comum, gosta de tecnologia.'),
+(5, 'normal', 'user2', 'user2@email.com', '$2y$10$//C4OVRMC4kBRxZ2H7jlEO7r9LKk66b0aCi5KkUgp51FgKAYk9euq', 'Usuário comum, fã de esportes.'),
+(6, 'normal', 'hacker', 'hacker@email.com', '$2y$10$//C4OVRMC4kBRxZ2H7jlEO7r9LKk66b0aCi5KkUgp51FgKAYk9euq', ''),
+(7, 'admin', 'admin3', 'admin3@email.com', '$2y$10$//C4OVRMC4kBRxZ2H7jlEO7r9LKk66b0aCi5KkUgp51FgKAYk9euq', ''),
+(8, 'normal', '123', '123@gmail.com', '$2y$10$//C4OVRMC4kBRxZ2H7jlEO7r9LKk66b0aCi5KkUgp51FgKAYk9euq', ''),
+(9, 'normal', 'abc', 'abc@email.com', '$2y$10$//C4OVRMC4kBRxZ2H7jlEO7r9LKk66b0aCi5KkUgp51FgKAYk9euq', ''),
+(10, 'normal', 'def', 'def@gmail.com', '$2y$10$//C4OVRMC4kBRxZ2H7jlEO7r9LKk66b0aCi5KkUgp51FgKAYk9euq', '');
 
 --
 -- Indexes for dumped tables
@@ -243,19 +249,19 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT for table `mensagem_privada`
 --
 ALTER TABLE `mensagem_privada`
-  MODIFY `id_mensagem_privada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_mensagem_privada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `post_resposta`
 --
 ALTER TABLE `post_resposta`
-  MODIFY `id_post_resposta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_post_resposta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `post_topico`
@@ -273,7 +279,7 @@ ALTER TABLE `topico`
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables

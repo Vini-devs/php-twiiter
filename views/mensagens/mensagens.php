@@ -47,7 +47,7 @@ include __DIR__ . '/../layout/dm.php';
                                     required>
                                 <?php if (!$usuarioSelecionado) { ?>
                                 <input type="text" class="form-control" name="nickname_destinatario"
-                                    placeholder="@User..." required>
+                                    placeholder="@Usuario..." required>
                                 <?php } else { ?>
                                 <input type="hidden" name="id_destinatario"
                                     value="<?php echo $usuarioSelecionado['id_usuario']; ?>">

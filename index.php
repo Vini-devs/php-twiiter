@@ -21,8 +21,10 @@ match ($pagina) {
     'logout'                    => AuthController::logout(),
     'usuario'                   => AuthController::usuario(),
     'cadastro'                  => AuthController::cadastro(),
-    // 'dashboard'                  => AuthController::dashboard(),
-        
+    'dashboard'                 => AuthController::dashboard(),
+    'usuario/editar'            => AuthController::editarUsuario($url[2]),
+    'usuario/banir'             => AuthController::banirUsuario($url[2]),
+
     'post'                      => PostController::index(),
     'post/explorar'             => PostController::explorar(),
     'post/pesquisar'            => PostController::pesquisar(),

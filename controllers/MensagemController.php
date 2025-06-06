@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/../services/session.php';
+
 require_once __DIR__ . '/../models/mensagem.php';
 require_once __DIR__ . '/../models/usuario.php';
 
