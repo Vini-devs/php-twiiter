@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__ . '/../../services/session.php';
-// A view não deve conter lógica de sessão, POST ou autenticação.
-// Receba a variável $error_message do controller.
+
 include __DIR__ . '/../layout/header.php';
 ?>
 <div class="container mt-4">
@@ -17,8 +16,8 @@ include __DIR__ . '/../layout/header.php';
             <input type="text" id="email" name="email" class="form-control rounded-pill" required>
         </div>
         <div class="mb-5">
-            <label for="password" class="form-label">Senha:</label>
-            <input type="password" id="password" name="password" class="form-control rounded-pill" required>
+            <label for="senha" class="form-label">Senha:</label>
+            <input type="password" id="senha" name="senha" class="form-control rounded-pill" required>
         </div>
         <div class="d-flex justify-content-between">
             <button type="submit" class="btn btn-primary rounded-pill">Entrar</button>

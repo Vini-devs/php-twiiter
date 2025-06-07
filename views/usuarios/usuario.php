@@ -1,11 +1,10 @@
 <?php 
 include __DIR__ . '/../layout/header.php';
 include __DIR__ . '/../layout/cards.php';
-// Supondo que $usuario seja um array com os dados do usuário
 ?>
 <div class="container py-4">
     <div class="row justify-content-center">
-        <div class="col-md-7">
+        <div class="col-md-10">
             <div class="card shadow-sm border-0 rounded-4">
                 <div class="card-body p-4 align-items-center">
                     <div class="d-flex justify-content-between mb-4">
@@ -23,7 +22,7 @@ include __DIR__ . '/../layout/cards.php';
                         </div>
 
 
-                        <a href="#" class="btn btn-outline-primary rounded-pill my-auto" style="border: none;"
+                        <a href="/php-twitter/usuario/editar/<?= $usuario['id_usuario'] ?>" class="btn btn-outline-primary rounded-pill my-auto" style="border: none;"
                             height="1rem"><i class="bi bi-pen" style="font-size:1.5rem;"></i></a>
 
                     </div>
@@ -44,7 +43,7 @@ include __DIR__ . '/../layout/cards.php';
                             $post['data_postagem'], 
                             $post['anexo'], 
                             $post['likes'],
-                            $id_usuario == $post['id_usuario'] 
+                            true 
                         );
                         ?>
                     </div>

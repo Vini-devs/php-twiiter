@@ -3,7 +3,7 @@ class Banco {
     private static $conn;
 
     static function getConn() {
-        $dsn = 'mysql:host=localhost;dbname=twitter;charset=utf8';
+        $dsn = 'mysql:host=localhost:3307;dbname=twitter;charset=utf8';
         $user = 'root';
         $pass = '';
 

@@ -15,18 +15,37 @@ function listaUsuario($id, $nickname) { ?>
 
 <?php function listaMensagem($idUsuario, $mensagem) { ?>
 <?php if ($idUsuario == $mensagem['id_usuario_remetente']) { ?>
-<div class="d-flex mb-3">
-    <div class="me-auto bg-white rounded-3 p-2 px-3 shadow-sm">
+<div class="d-flex mb-3 justify-content-end align-items-center">
+    <div class="dropdown ms-2 mx-2">
+        <button class="btn btn-light btn-sm rounded-circle" type="button"
+            id="dropdownMenuButtonMensagem<?php echo $mensagem['id_mensagem_privada']; ?>" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <i class="bi bi-three-dots"></i>
+        </button>
+        <ul class="dropdown-menu"
+            aria-labelledby="dropdownMenuButtonMensagem<?php echo $mensagem['id_mensagem_privada']; ?>">
+            <li><a class="dropdown-item"
+                    href="/php-twitter/mensagem/editar/<?php echo $mensagem['id_mensagem_privada']; ?>">Editar</a>
+            </li>
+            <li><a class="dropdown-item text-danger"
+                    href="/php-twitter/mensagem/apagar/<?php echo $mensagem['id_mensagem_privada']; ?>"
+                    onclick="return confirm('Tem certeza que deseja excluir esta mensagem?');">Apagar</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="bg-primary text-white rounded-3 p-2 px-3 shadow-sm d-flex align-items-center">
         <div><?php echo $mensagem['conteudo'] ?></div>
-        <small class="text-muted" style="font-size: 0.7rem;"><?php echo $mensagem['data_envio'] ?></small>
+        <small class="text-light ms-2" style="font-size: 0.7rem;"><?php echo $mensagem['data_envio'] ?></small>
     </div>
 </div>
 
 <?php } else { ?>
-<div class="d-flex mb-3 justify-content-end">
-    <div class="ms-auto bg-primary text-white rounded-3 p-2 px-3 shadow-sm">
+
+<div class="d-flex mb-3">
+    <div class="me-auto bg-white rounded-3 p-2 px-3 shadow-sm">
         <div><?php echo $mensagem['conteudo'] ?></div>
-        <small class="text-light" style="font-size: 0.7rem;"><?php echo $mensagem['data_envio'] ?></small>
+        <small class="text-muted" style="font-size: 0.7rem;"><?php echo $mensagem['data_envio'] ?></small>
     </div>
 </div>
 <?php } ?>
