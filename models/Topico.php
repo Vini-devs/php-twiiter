@@ -27,6 +27,13 @@ class Topico {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public static function encontrarTopicoPorId($id_topico) {
+        $banco = Banco::getConn();
+        $stmt = $banco->prepare("SELECT * FROM topico WHERE id_topico = :id_topico LIMIT 1");
+        $stmt->execute([':id_topico' => $id_topico]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     public static function criarTopico($nome) {
         $banco = Banco::getConn();
         $stmt = $banco->prepare("INSERT INTO topico (nome) VALUES (:nome)");

@@ -4,9 +4,8 @@ require_once __DIR__ . '/../services/session.php';
 require_once __DIR__ . '/../models/mensagem.php';
 require_once __DIR__ . '/../models/usuario.php';
 
-$url = explode("/", $_GET['url'] ?? '');
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($url) && is_numeric($url[1])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     MensagemController::criarMensagem();
 }
 
@@ -21,7 +20,7 @@ class MensagemController {
         
         $usuarios = Mensagem::encontrarUsuariosQueEnviaramMensagens($idSessaoUsuario);
         
-        if (isset($idUsuario) && !empty($usuarios)) {
+        if (is_numeric($idUsuario) && !empty($usuarios)) {
             $usuarioSelecionado = Usuario::encontrarUsuario($idUsuario);
             
             $mensagem = Mensagem::encontrarMensagens($idSessaoUsuario, $idUsuario);
