@@ -4,7 +4,7 @@ require_once __DIR__ . '/../models/topico.php';
 class TopicoController {
     static function encontrarTopicos() {
         $topicos = Topico::encontrarTopicos();
-        include __DIR__ . '/../views/topicos/topicos.php';
+        include __DIR__ . '/../views/post/explorar.php';
     }
 
     static function criarTopico() {

@@ -22,7 +22,7 @@ include __DIR__ . '/../layout/dm.php';
                     </div>
                     <!-- Área de mensagens -->
                     <div class="col-md-8 d-flex flex-column" style="min-height:500px;">
-                        <?php if (isset($usuarioSelecionado)): ?>
+                        <?php if ($usuarioSelecionado): ?>
                         <div class="p-3 border-bottom d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
                                 <i class="bi bi-person-circle text-secondary me-2" style="font-size:2rem;"></i>
@@ -41,20 +41,17 @@ include __DIR__ . '/../layout/dm.php';
                             <?php endforeach; ?>
                         </div>
                         <?php endif; ?>
-                        <form class="p-3 border-top bg-white" method="post">
-                            <div class="input-group">
-                                <input type="text" class="form-control" name="conteudo" placeholder="Mensagem..."
-                                    required>
-                                <?php if (!$usuarioSelecionado) { ?>
-                                <input type="text" class="form-control" name="nickname_destinatario"
-                                    placeholder="@Usuario..." required>
-                                <?php } else { ?>
-                                <input type="hidden" name="id_destinatario"
-                                    value="<?php echo $usuarioSelecionado['id_usuario']; ?>">
-                                <?php } ?>
+                        <form class="p-3 border-top bg-white input-group" method="post">
+                            <input type="text" class="form-control" name="conteudo" placeholder="Mensagem..." required>
+                            <?php if (!$usuarioSelecionado) { ?>
+                            <input type="text" class="form-control" name="nickname_destinatario"
+                                placeholder="@Usuario..." required>
+                            <?php } else { ?>
+                            <input type="hidden" name="id_destinatario"
+                                value="<?php echo $usuarioSelecionado['id_usuario']; ?>">
+                            <?php } ?>
 
-                                <button class="btn btn-primary" type="submit"><i class="bi bi-send"></i></button>
-                            </div>
+                            <button class="btn btn-primary" type="submit"><i class="bi bi-send"></i></button>
                         </form>
                     </div>
                 </div>

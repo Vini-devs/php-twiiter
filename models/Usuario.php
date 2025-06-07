@@ -3,24 +3,24 @@ require_once __DIR__ . '/../services/banco.php';
 require_once __DIR__ . '/../services/session.php';
 
 class Usuario {
-    public static function encontrarUsuarios() {
+        public static function encontrarUsuarios() {
         $banco = Banco::getConn();
-        $stmt = $banco->query("SELECT id_usuario, tipo, nickname, email, bio FROM usuario 
-            ORDER BY id_usuario DESC");
+        $stmt = $banco->prepare("SELECT id_usuario, tipo, nickname, email, bio FROM usuario ORDER BY id_usuario DESC");
+        $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public static function encontrarUsuario($idUsuario) {
         $banco = Banco::getConn();
-        $stmt = $banco->query("SELECT id_usuario, tipo, nickname, email, bio FROM usuario 
-            WHERE id_usuario='$idUsuario'");
+        $stmt = $banco->prepare("SELECT id_usuario, tipo, nickname, email, bio FROM usuario WHERE id_usuario = :id_usuario");
+        $stmt->execute([':id_usuario' => $idUsuario]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public static function encontrarUsuarioPorNickname($nickname) {
         $banco = Banco::getConn();
-        $stmt = $banco->query("SELECT id_usuario, tipo, nickname, email, bio FROM usuario 
-            WHERE nickname='$nickname'");
+        $stmt = $banco->prepare("SELECT id_usuario, tipo, nickname, email, bio FROM usuario WHERE nickname = :nickname");
+        $stmt->execute([':nickname' => $nickname]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -68,8 +68,6 @@ class Usuario {
                 $_SESSION['nickname'] = $resp['nickname'] ?? null;
                 $_SESSION['tipo'] = $resp['tipo'] ?? null;
                 return true;
-            } else  {
-                var_dump("Senha incorreta");
             }
         }
         return false;

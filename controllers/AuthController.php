@@ -28,8 +28,13 @@ class AuthController {
 
             if (is_null($nickname) || is_null($email)) {
                 header("Location: /php-twitter/usuario/editar/$idUsuario");
+            } 
+
+            Usuario::editarUsuario($idUsuario, $nickname, $email, $bio);
+            
+            if  ($idUsuario == $_SESSION['id_usuario']) {
+                header('Location: /php-twitter/usuario');
             } else {
-                Usuario::editarUsuario($idUsuario, $nickname, $email, $bio);
                 header('Location: /php-twitter/dashboard');
             }
         }

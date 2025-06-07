@@ -38,8 +38,8 @@ match ($pagina) {
     'resposta/editar'           => RespostaController::editarResposta($url[2]),
     'resposta/apagar'           => RespostaController::apagarResposta($url[2]),
 
-    'topico'                 => TopicoController::encontrarTopico($url[2]),
-    'topico/criar'           => TopicoController::criarTopico($url[2]),
+    'topico'                 => TopicoController::encontrarTopicos(),
+    'topico/criar'           => TopicoController::criarTopico(),
     'topico/editar'          => TopicoController::editarTopico($url[2]),
     'topico/apagar'          => TopicoController::apagarTopico($url[2]),
 
