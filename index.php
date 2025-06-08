@@ -20,8 +20,9 @@ require __DIR__ . '/controllers/TopicoController.php';
 match ($pagina) {
     'login'                     => AuthController::login(),
     'logout'                    => AuthController::logout(),
-    'usuario'                   => AuthController::usuario(),
     'cadastro'                  => AuthController::cadastro(),
+    'recuperar-senha'           => AuthController::recuperarSenha(),
+    'usuario'                   => AuthController::usuario(),
     'dashboard'                 => AuthController::dashboard(),
     'usuario/editar'            => AuthController::editarUsuario($url[2]),
     'usuario/banir'             => AuthController::banirUsuario($url[2]),

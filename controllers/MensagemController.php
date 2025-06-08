@@ -5,7 +5,7 @@ require_once __DIR__ . '/../models/mensagem.php';
 require_once __DIR__ . '/../models/usuario.php';
 
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (strpos($_SERVER['REQUEST_URI'], 'mensagem') && $_SERVER['REQUEST_METHOD'] === 'POST') {
     MensagemController::criarMensagem();
 }
 

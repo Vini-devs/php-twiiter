@@ -3,7 +3,9 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-if (!isset($_SESSION['id_usuario']) && $pagina != "login" && $pagina != "cadastro" && $pagina != "") {
+if (!isset($_SESSION['id_usuario'])
+ && $pagina != "login" && $pagina != "cadastro" && $pagina != ""
+ && $pagina != "recuperar-senha") {
     header('Location: /php-twitter/login');
 }
 

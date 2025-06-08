@@ -19,8 +19,9 @@ include __DIR__ . '/../layout/header.php';
             <label for="senha" class="form-label">Senha:</label>
             <input type="password" id="senha" name="senha" class="form-control rounded-pill" required>
         </div>
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between align-items-center">
             <button type="submit" class="btn btn-primary rounded-pill">Entrar</button>
+            <a href="/php-twitter/recuperar-senha" class="small text-muted">Esqueceu a Senha?</a>
             <a href="/php-twitter/cadastro" class="btn btn-outline-primary rounded-pill">Crie sua Conta</a>
         </div>
     </form>

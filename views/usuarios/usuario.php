@@ -21,10 +21,10 @@ include __DIR__ . '/../layout/cards.php';
                             </div>
                         </div>
 
-
-                        <a href="/php-twitter/usuario/editar/<?= $usuario['id_usuario'] ?>" class="btn btn-outline-primary rounded-pill my-auto" style="border: none;"
-                            height="1rem"><i class="bi bi-pen" style="font-size:1.5rem;"></i></a>
-
+                        <a href="/php-twitter/usuario/editar/<?= $usuario['id_usuario'] ?>"
+                            class="btn btn-outline-primary rounded-pill my-auto" style="border: none;" height="1rem">
+                            <i class="bi bi-pen" style="font-size:1.5rem;"></i>
+                        </a>
                     </div>
                     <hr>
                     <div class="mb-3">

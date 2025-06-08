@@ -26,8 +26,16 @@ class AuthController {
             $email = $_POST['email'] ?? null;
             $bio = $_POST['bio'] ?? '';
 
+            $senha = $_POST['senha'] ?? null;
+            $confirmarSenha = $_POST['confirmar_senha'] ?? null;
+
+            if (!is_null($senha) && !is_null($confirmarSenha) && $senha === $confirmarSenha) {
+                Usuario::editarSenhaUsuario($idUsuario, $senha);
+            }
+
             if (is_null($nickname) || is_null($email)) {
                 header("Location: /php-twitter/usuario/editar/$idUsuario");
+                exit;
             } 
 
             Usuario::editarUsuario($idUsuario, $nickname, $email, $bio);
@@ -68,11 +76,13 @@ class AuthController {
             $nickname = $_POST['nickname'] ?? null;
             $email = $_POST['email'] ?? null;
             $senha = $_POST['password'] ?? null;
+            $data_nascimento = $_POST['data_nascimento'] ?? null;
+            $cpf = $_POST['cpf'] ?? null;
 
-            if (is_null($nickname) || is_null($email) || is_null($senha)) {
+            if (is_null($nickname) || is_null($email) || is_null($senha) || is_null($data_nascimento) || is_null($cpf)) {
                 header('Location: /php-twitter/cadastro');
             } else {
-                Usuario::criarUsuario("normal", $nickname, $email, $senha);
+                Usuario::criarUsuario("normal", $nickname, $email, $senha, $data_nascimento, $cpf);
                 header('Location: /php-twitter/login');
             }
         }
@@ -101,5 +111,25 @@ class AuthController {
     public static function logout() {
         logout();
         header('Location: /php-twitter');
+    }
+
+    public static function recuperarSenha() {
+        $senhaRecuperada = null;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data_nascimento = date('Y-m-d', strtotime($_POST['data_nascimento'])) ?? null;
+            $cpf = $_POST['cpf'] ?? null;
+
+
+            if (is_null($data_nascimento) || is_null($cpf)) {
+                header('Location: /php-twitter/recuperar-senha');
+            }
+            
+            $verificarRecuperacao = Usuario::verificarRecuperarSenha($data_nascimento, $cpf);
+            if ($verificarRecuperacao) {
+                $senhaRecuperada = bin2hex(random_bytes(8)); 
+                Usuario::editarSenhaUsuario($verificarRecuperacao['id_usuario'], $senhaRecuperada);
+            }
+        }
+        include __DIR__ . '/../views/usuarios/recuperar-senha.php';
     }
 }

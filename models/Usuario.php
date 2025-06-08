@@ -24,16 +24,18 @@ class Usuario {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public static function criarUsuario($tipo, $nickname, $email, $senha, $bio = '') {
+    public static function criarUsuario($tipo, $nickname, $email, $senha, $data_nascimento, $cpf, $bio = '' ) {
         $banco = Banco::getConn();
         $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
-        $stmt = $banco->prepare("INSERT INTO usuario (tipo, nickname, email, senha, bio) VALUES (:tipo, :nickname, :email, :senha, :bio)");
+        $stmt = $banco->prepare("INSERT INTO usuario (tipo, nickname, email, senha, bio, data_nascimento, cpf) VALUES (:tipo, :nickname, :email, :senha, :bio, :data_nascimento, :cpf)");
         return $stmt->execute([
             ':tipo' => $tipo,
             ':nickname' => $nickname,
             ':email' => $email,
             ':senha' => $senha_hash,
-            ':bio' => $bio
+            ':bio' => $bio,
+            ':data_nascimento' => $data_nascimento,
+            ':cpf' => $cpf
         ]);
     }
 
@@ -44,6 +46,15 @@ class Usuario {
             ':nickname' => $nickname,
             ':email' => $email,
             ':bio' => $bio,
+            ':id_usuario' => $idUsuario
+        ]);
+    }
+
+    public static function editarSenhaUsuario($idUsuario, $novaSenha) {
+        $banco = Banco::getConn();
+        $stmt = $banco->prepare("UPDATE usuario SET senha = :senha WHERE id_usuario = :id_usuario");
+        return $stmt->execute([
+            ':senha' => password_hash($novaSenha, PASSWORD_DEFAULT),
             ':id_usuario' => $idUsuario
         ]);
     }
@@ -71,5 +82,14 @@ class Usuario {
             }
         }
         return false;
+    }
+
+    public static function verificarRecuperarSenha($data_nascimento, $cpf) {
+        $banco = Banco::getConn();
+        $stmt = $banco->prepare("SELECT * FROM usuario WHERE data_nascimento = :data_nascimento AND cpf = :cpf LIMIT 1");
+        $stmt->bindParam(':data_nascimento', $data_nascimento);
+        $stmt->bindParam(':cpf', $cpf);
+        $stmt->execute();
+        return $stmt->fetch();
     }
 }
