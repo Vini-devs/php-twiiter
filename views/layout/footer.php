@@ -1,4 +1,4 @@
-<footer id="footer" class="bg-white text-center py-3 border-top border-1 border-light-subtle">
+<footer id="footer" class="<?= $_SESSION['bgLayout'] ?? 'bg-white' ?> text-center py-3 border-top border-1 border-light-subtle">
     <p class="mb-0">&copy; 2025 Twitter dos Cria. Inspirado no <span class="text-primary"><i class="bi bi-twitter"></i>
             Twitter</span>.</p>
 </footer>

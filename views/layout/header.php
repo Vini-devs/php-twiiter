@@ -11,8 +11,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
-<body style="background-color: #e6ecf0; font-family: 'Segoe UI', 'Arial', 'sans-serif'; color: #14171a;">
-    <header class="py-2 shadow-sm bg-white border-bottom border-1 border-light-subtle">
+<body
+    style="background-color: <?php echo getCookieCustom('tema') === 'escuro' ? '#222' : '#e6ecf0'; ?>; color: <?php echo getCookieCustom('tema') === 'escuro' ? '#f8f9fa' : '#14171a'; ?>; font-family: 'Segoe UI', 'Arial', 'sans-serif';">
+    <header class="py-2 shadow-sm <?= $_SESSION['bgLayout'] ?? 'bg-white' ?> border-bottom border-1 border-light-subtle">
         <div class="container">
             <div class="d-flex justify-content-around align-items-center">
                 <h1 class="h3 mb-0 d-flex align-items-center">
@@ -21,8 +22,8 @@
                         style="letter-spacing:-1px;">Twitter</a>
                 </h1>
                 <nav>
-                    <a href="/php-twitter/post/explorar" class="btn btn-light rounded-pill me-2">Explorar</a>
-                    <a href="/php-twitter/post/pesquisar" class="btn btn-light rounded-pill me-2">Pesquisar</a>
+                    <a href="/php-twitter/explorar" class="btn btn-light rounded-pill me-2">Explorar</a>
+                    <a href="/php-twitter/pesquisar" class="btn btn-light rounded-pill me-2">Pesquisar</a>
                     <a href="/php-twitter/mensagem" class="btn btn-light rounded-pill me-2">DM</a>
                     <?php if (isset($_SESSION['id_usuario']) && $_SESSION['tipo'] != 'normal') { ?>
                     <a href="/php-twitter/dashboard" class="btn btn-warning rounded-pill me-2">Dashboard</a>
@@ -36,8 +37,14 @@
 
                     <a href="<?php echo isset($_SESSION['id_usuario']) ? '/php-twitter/post/criar' : '/php-twitter/login'; ?>"
                         class="btn btn-primary rounded-pill ms-2 fw-bold">
-                        <i class="bi bi-plus-circle me-1"></i> Criar Tweet
+                        <i class="bi bi-plus-circle me-1"></i> Tweet
                     </a>
+
+                    <a href="/php-twitter/usuario/editar/<?=$_SESSION['id_usuario']?>"
+                        class="btn btn-light rounded-pill ms-2 fw-bold">
+                        <i class="bi bi-gear"></i>
+                    </a>
+
                     <?php } else { ?>
                     <a href="/php-twitter/login" class="btn btn-primary rounded-pill ms-2 fw-bold">
                         Entrar

@@ -15,7 +15,22 @@ class PostController {
     }
 
     public static function pesquisar() {
-        
+        $busca = $_GET['q'] ?? '';
+        $posts = [];
+        $usuarios = [];
+        if ($busca) {
+            $banco = Banco::getConn();
+            // Busca posts
+            $stmt = $banco->prepare("SELECT post.*, usuario.nickname FROM post INNER JOIN usuario ON post.id_usuario = usuario.id_usuario WHERE post.conteudo LIKE :busca ORDER BY data_postagem DESC");
+            $stmt->execute([':busca' => "%$busca%"]);
+            $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            // Busca usuários
+            $stmt2 = $banco->prepare("SELECT id_usuario, nickname, bio FROM usuario WHERE nickname LIKE :busca OR bio LIKE :busca");
+            $stmt2->execute([':busca' => "%$busca%"]);
+            $usuarios = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+}
+
+        include __DIR__ . '/../views/posts/pesquisar.php';
     }
 
     public static function encontrarPost() {

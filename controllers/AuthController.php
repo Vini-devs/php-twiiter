@@ -6,10 +6,10 @@ require_once __DIR__ . '/../models/Post.php';
 require_once __DIR__ . '/../models/Topico.php';
 
 class AuthController {
-    public static function usuario() {
-        $usuario = Usuario::encontrarUsuario($_SESSION['id_usuario']);
-        $posts = Post::encontrarPostsPorUsuario($_SESSION['id_usuario']);
-        
+    public static function usuario($idUsuario = null) {
+        $usuario = Usuario::encontrarUsuario($idUsuario ?? $_SESSION['id_usuario']);
+        $posts = Post::encontrarPostsPorUsuario($idUsuario ?? $_SESSION['id_usuario']);
+
         include __DIR__ . '/../views/usuarios/usuario.php';
     }
 

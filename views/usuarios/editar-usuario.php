@@ -6,6 +6,22 @@ include __DIR__ . '/../layout/header.php';
         <div class="col-md-7">
             <div class="card shadow-sm border-0 rounded-4">
                 <div class="card-body p-4">
+                    <?php if ($idUsuario == $_SESSION['id_usuario']) { ?>
+                    <div class="d-flex">
+                        <h4 class="mb-4 fw-bold text-primary">Preferências</h4>
+                        <form method="get" class="d-inline mb-3 mx-5">
+                            <input type="hidden" name="tema"
+                                value="<?php echo getCookieCustom('tema') === 'escuro' ? 'claro' : 'escuro'; ?>">
+                            <button type="submit" class="btn btn-outline-secondary rounded-pill">
+                                <i
+                                    class="bi <?php echo getCookieCustom('tema') === 'escuro' ? 'bi-sun' : 'bi-moon'; ?>"></i>
+                                Tema
+                                <?php echo getCookieCustom('tema') === 'escuro' ? 'Claro' : 'Escuro'; ?>
+                            </button>
+                        </form>
+                    </div>
+                    <hr>
+                    <?php } ?>
                     <h4 class="mb-4 fw-bold text-primary">Editar Usuário</h4>
                     <form action="" method="post">
                         <div class="mb-3">

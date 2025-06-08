@@ -4,8 +4,12 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 if (!isset($_SESSION['id_usuario'])
- && $pagina != "login" && $pagina != "cadastro" && $pagina != ""
- && $pagina != "recuperar-senha") {
+ && $pagina != "login"
+ && $pagina != "cadastro"
+ && $pagina != "recuperar-senha"
+ && $pagina != "pesquisar"
+ && $pagina != "resposta"
+ && $pagina != "") {
     header('Location: /php-twitter/login');
 }
 
@@ -27,6 +31,6 @@ function checarTipoUsuarioPassivo($tiposAutorizados) {
 }
 
 function logout () {
-    session_unset();  // Remove todas as variáveis
-    session_destroy(); // Destroi a sessão
+    session_unset();
+    session_destroy();
 }

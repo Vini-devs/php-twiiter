@@ -41,7 +41,7 @@ include __DIR__ . '/../layout/dm.php';
                             <?php endforeach; ?>
                         </div>
                         <?php endif; ?>
-                        <form class="p-3 border-top bg-white input-group" method="post">
+                        <form class="p-3 border-top <?= $_SESSION['bgLayout'] ?? 'bg-white' ?> input-group" method="post">
                             <input type="text" class="form-control" name="conteudo" placeholder="Mensagem..." required>
                             <?php if (!$usuarioSelecionado) { ?>
                             <input type="text" class="form-control" name="nickname_destinatario"

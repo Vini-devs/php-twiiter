@@ -43,7 +43,7 @@ function listaUsuario($id, $nickname) { ?>
 <?php } else { ?>
 
 <div class="d-flex mb-3">
-    <div class="me-auto bg-white rounded-3 p-2 px-3 shadow-sm">
+    <div class="me-auto <?= $_SESSION['bgLayout'] ?? 'bg-white' ?> rounded-3 p-2 px-3 shadow-sm">
         <div><?php echo $mensagem['conteudo'] ?></div>
         <small class="text-muted" style="font-size: 0.7rem;"><?php echo $mensagem['data_envio'] ?></small>
     </div>

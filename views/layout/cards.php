@@ -1,7 +1,7 @@
 <?php
 function cardPost($id_post, $nickname, $conteudo, $data_postagem, $anexo, $likes, $isLoggedUser = false) { ?>
 <div class="col-md-8 mb-4">
-    <div class="card border-1 border-light-subtle rounded-4 shadow-sm bg-white">
+    <div class="card border-1 border-light-subtle rounded-4 shadow-sm <?= $_SESSION['bgLayout'] ?? 'bg-white' ?>">
         <div class="card-body d-flex flex-column">
             <div class="d-flex align-items-center mb-2">
                 <i class="bi bi-person-circle text-secondary me-2" style="font-size:1.5rem;"></i>

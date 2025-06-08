@@ -17,32 +17,44 @@ require __DIR__ . '/controllers/RespostaController.php';
 require __DIR__ . '/controllers/MensagemController.php';
 require __DIR__ . '/controllers/TopicoController.php';
 
+if (isset($_COOKIE['tema']) && $_COOKIE['tema'] === 'claro') {
+    $_SESSION['bgLayout'] = 'bg-white';
+} else {
+    $_SESSION['bgLayout'] = 'bg-black text-white';
+}
+
+if (isset($_GET['tema']) && in_array($_GET['tema'], ['claro', 'escuro'])) {
+    setCookieCustom('tema', $_GET['tema'], 60 * 60 * 24 * 30); // 30 dias
+    header('Location: /php-twitter' . ($_SESSION['id_usuario'] ? '/usuario/editar/' . $_SESSION['id_usuario'] : ''));
+    exit;
+}
+
 match ($pagina) {
     'login'                     => AuthController::login(),
     'logout'                    => AuthController::logout(),
     'cadastro'                  => AuthController::cadastro(),
     'recuperar-senha'           => AuthController::recuperarSenha(),
-    'usuario'                   => AuthController::usuario(),
     'dashboard'                 => AuthController::dashboard(),
+    'usuario'                   => AuthController::usuario($url[1] ?? null),
     'usuario/editar'            => AuthController::editarUsuario($url[2]),
     'usuario/banir'             => AuthController::banirUsuario($url[2]),
 
     'post'                      => PostController::index(),
-    'post/explorar'             => PostController::explorar(),
-    'post/pesquisar'            => PostController::pesquisar(),
     'post/criar'                => PostController::criarPost(),
     'post/editar'               => PostController::editarPost($url[2]),
     'post/apagar'               => PostController::apagarPost($url[2]),
+    'explorar'                  => PostController::explorar(),
+    'pesquisar'                 => PostController::pesquisar(),
 
     'resposta'                  => RespostaController::encontrarRespostas($url[1]),
     'resposta/criar'            => RespostaController::criarResposta($url[2]),
     'resposta/editar'           => RespostaController::editarResposta($url[2]),
     'resposta/apagar'           => RespostaController::apagarResposta($url[2]),
 
-    'topico'                 => TopicoController::encontrarTopicos(),
-    'topico/criar'           => TopicoController::criarTopico(),
-    'topico/editar'          => TopicoController::editarTopico($url[2]),
-    'topico/apagar'          => TopicoController::apagarTopico($url[2]),
+    'topico'                    => TopicoController::encontrarTopicos(),
+    'topico/criar'              => TopicoController::criarTopico(),
+    'topico/editar'             => TopicoController::editarTopico($url[2]),
+    'topico/apagar'             => TopicoController::apagarTopico($url[2]),
 
     'mensagem'                  => MensagemController::encontrarMensagem($url[1] ?? null),
     'mensagem/editar'           => MensagemController::editarMensagem($url[2]),
