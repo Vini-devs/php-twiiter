@@ -55,5 +55,18 @@ class RespostaController {
 
         header('Location: /php-twitter/');
     }
+    
+    public static function likeResposta($idResposta) {
+        $idUsuario = $_SESSION['id_usuario'] ?? null;
+        $resposta = Resposta::encontrarRespostaPorId($idResposta);
+
+        if ($resposta && $idUsuario) {
+            Resposta::likeResposta($idResposta, $idUsuario);
+
+            header('Location: /php-twitter/resposta/' . $resposta['id_post']);
+        }
+
+        header('Location: /php-twitter/');
+    }
 }
 ?>

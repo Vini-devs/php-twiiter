@@ -81,4 +81,14 @@ class PostController {
 
         header('Location: /php-twitter/');
     }
+
+    public static function likePost($idPost) {
+        $idUsuario = $_SESSION['id_usuario'] ?? null;
+
+        if ($idPost && $idUsuario) {
+            Post::likePost($idPost, $idUsuario);
+        }
+
+        header('Location: /php-twitter/post/' . $idPost);
+    }
 }

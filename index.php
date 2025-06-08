@@ -17,16 +17,16 @@ require __DIR__ . '/controllers/RespostaController.php';
 require __DIR__ . '/controllers/MensagemController.php';
 require __DIR__ . '/controllers/TopicoController.php';
 
-if (isset($_COOKIE['tema']) && $_COOKIE['tema'] === 'claro') {
-    $_SESSION['bgLayout'] = 'bg-white';
-} else {
-    $_SESSION['bgLayout'] = 'bg-black text-white';
-}
-
 if (isset($_GET['tema']) && in_array($_GET['tema'], ['claro', 'escuro'])) {
     setCookieCustom('tema', $_GET['tema'], 60 * 60 * 24 * 30); // 30 dias
     header('Location: /php-twitter' . ($_SESSION['id_usuario'] ? '/usuario/editar/' . $_SESSION['id_usuario'] : ''));
     exit;
+}
+
+if (isset($_COOKIE['tema']) && $_COOKIE['tema'] === 'claro') {
+    $_SESSION['bgLayout'] = 'bg-white';
+} else {
+    $_SESSION['bgLayout'] = 'bg-black text-white';
 }
 
 match ($pagina) {
@@ -45,11 +45,13 @@ match ($pagina) {
     'post/apagar'               => PostController::apagarPost($url[2]),
     'explorar'                  => PostController::explorar(),
     'pesquisar'                 => PostController::pesquisar(),
+    'post/like'                 => PostController::likePost($url[2]),
 
     'resposta'                  => RespostaController::encontrarRespostas($url[1]),
     'resposta/criar'            => RespostaController::criarResposta($url[2]),
     'resposta/editar'           => RespostaController::editarResposta($url[2]),
     'resposta/apagar'           => RespostaController::apagarResposta($url[2]),
+    'resposta/like'             => RespostaController::likeResposta($url[2]),
 
     'topico'                    => TopicoController::encontrarTopicos(),
     'topico/criar'              => TopicoController::criarTopico(),

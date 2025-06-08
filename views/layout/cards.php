@@ -41,7 +41,9 @@ function cardPost($id_post, $nickname, $conteudo, $data_postagem, $anexo, $likes
                     <a href="/php-twitter/resposta/criar/<?php echo $id_post; ?>"
                         class="btn btn-light rounded-pill py-0 px-3"><i class="bi bi-chat me-1"></i> Responder</a>
                     <?php endif; ?>
-                    <span class="text-muted small"><i class="bi bi-heart me-1"></i> <?php echo (int)$likes; ?></span>
+                    <a href="/php-twitter/post/like/<?php echo $id_post; ?>"
+                        class="text-muted small text-decoration-none like-hover"><i class="bi bi-heart me-1"></i>
+                        <?php echo (int)$likes; ?></a>
                 </span>
             </div>
         </div>
@@ -84,9 +86,18 @@ function cardPost($id_post, $nickname, $conteudo, $data_postagem, $anexo, $likes
             <div class="d-flex justify-content-between align-items-center mt-2">
                 <span class="text-muted small"><i class="bi bi-clock me-1"></i>
                     <?php echo date('d/m/Y H:i:s', strtotime($data_postagem)); ?></span>
-                <span class="text-muted small"><i class="bi bi-heart me-1"></i> <?php echo (int)$likes; ?></span>
+                <a href="/php-twitter/resposta/like/<?php echo $id_post; ?>"
+                    class="text-muted small text-decoration-none like-hover"><i class="bi bi-heart me-1"></i>
+                    <?php echo (int)$likes; ?></a>
             </div>
         </div>
     </div>
 </div>
 <?php }?>
+
+<style>
+.like-hover:hover {
+    color: #e83e8c !important;
+    transition: color 0.1s ease;
+}
+</style>

@@ -47,4 +47,10 @@ class Resposta {
         $stmt = $banco->prepare("DELETE FROM post_resposta WHERE id_post_resposta = :id_post_resposta");
         return $stmt->execute([':id_post_resposta' => $id_post_resposta]);
     }
+
+    public static function likeResposta($idResposta, $idUsuario) {
+        $banco = Banco::getConn();
+        $stmt = $banco->prepare("UPDATE post_resposta SET likes = likes + 1 WHERE id_post_resposta = :id_post_resposta");
+        $stmt->execute([':id_post_resposta' => $idResposta]);
+    }
 }
