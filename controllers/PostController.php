@@ -2,6 +2,7 @@
 require_once __DIR__ . '/../services/session.php';
 
 require_once __DIR__ . '/../models/Post.php';
+require_once __DIR__ . '/../models/Topico.php';
 
 class PostController {
     public static function index() {
@@ -11,7 +12,22 @@ class PostController {
     }
 
     public static function explorar() {
-        
+        $topicos = Topico::encontrarTopicos();
+        $idTopico = $_GET['topico'] ?? null;
+        $posts = [];
+        $topicoAtual = null;
+
+        if ($idTopico) {
+            $posts = Topico::encontrarPostsPorTopico($idTopico);
+            foreach ($topicos as $t) {
+                if ($t['id_topico'] == $idTopico) {
+                    $topicoAtual = $t;
+                    break;
+                }
+            }
+        }
+
+        include __DIR__ . '/../views/posts/explorar.php';
     }
 
     public static function pesquisar() {

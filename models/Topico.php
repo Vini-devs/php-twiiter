@@ -4,9 +4,13 @@ require_once __DIR__ . '/../services/banco.php';
 class Topico {
     public static function encontrarPostsPorTopico($idTopico) {
         $banco = Banco::getConn();
-        $stmt = $banco->prepare("SELECT post.* FROM post 
-            INNER JOIN post_topico ON post.id_post = post_topico.id_post 
-            WHERE post_topico.id_topico = :id_topico");
+        $stmt = $banco->prepare(
+            "SELECT post.*, usuario.nickname FROM post
+            INNER JOIN post_topico ON post.id_post = post_topico.id_post
+            INNER JOIN usuario ON post.id_usuario = usuario.id_usuario
+            WHERE post_topico.id_topico = :id_topico
+            ORDER BY post.data_postagem DESC"
+        );
         $stmt->execute([':id_topico' => $idTopico]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
