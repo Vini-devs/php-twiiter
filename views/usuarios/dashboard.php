@@ -16,8 +16,9 @@ include_once __DIR__ . '/../layout/header.php';
     <div class="d-flex">
         <?php if ($_SESSION['tipo'] === 'admin' || $_SESSION['tipo'] === 'moderador'): ?>
         <div class="card mb-4 col-md-6">
-            <div class="card-header bg-primary text-white">
-                Gerenciar Tópicos
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <span>Gerenciar Tópicos</span>
+                <a href="/php-twitter/topico/criar" class="btn btn-sm btn-light">Novo</a>
             </div>
             <div class="card-body">
                 <?php if (!empty($topicos)): ?>
@@ -37,9 +38,9 @@ include_once __DIR__ . '/../layout/header.php';
                             <td><?= htmlspecialchars($topico['nome']) ?></td>
                             <td><?= count($posts[$topico['id_topico']] ?? []) ?></td>
                             <td>
-                                <a href="/php-twitter/topicos/editar/<?= $topico['id_topico'] ?>"
+                                <a href="/php-twitter/topico/editar/<?= $topico['id_topico'] ?>"
                                     class="btn btn-sm btn-warning">Editar</a>
-                                <a href="/php-twitter/topicos/apagar/<?= $topico['id_topico'] ?>"
+                                <a href="/php-twitter/topico/apagar/<?= $topico['id_topico'] ?>"
                                     class="btn btn-sm btn-danger"
                                     onclick="return confirm('Tem certeza que deseja excluir este tópico?')">Excluir</a>
                             </td>
